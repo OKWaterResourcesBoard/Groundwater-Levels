@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Well 9628 - OWRB GMAP</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 40px 20px;
+      color: #333;
+    }
+    .owrb-header {
+      padding: 12px 0 10px 0;
+      border-bottom: 3px solid #2c5f8a;
+      margin-bottom: 18px;
+    }
+    .owrb-header img { height: 60px; width: auto; }
+    h1, h2 { color: #2c5f8a; margin-top: 8px; }
+    a { color: #2c5f8a; }
+    .back-link { display: inline-block; margin-bottom: 10px; font-size: 14px; }
+    .well-meta {
+      font-size: 14px;
+      color: #555;
+      margin: 4px 0 14px 0;
+      line-height: 1.7;
+    }
+    .well-meta span { margin-right: 24px; }
+    .well-meta strong { color: #2c5f8a; }
+    .note { text-align: center; font-weight: bold; margin: 24px 0 8px 0; font-size: 15px; }
+    .btn {
+      display: inline-block;
+      margin-bottom: 10px;
+      margin-right: 8px;
+      padding: 4px 12px;
+      font-size: 13px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #333;
+    }
+    .btn:hover { background-color: #e0e0e0; }
+    table { border-collapse: collapse; width: 100%; margin-top: 4px; table-layout: fixed; }
+    th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; width: 33.33%; }
+    th { background-color: #2c5f8a; color: white; }
+    tr:nth-child(even) { background-color: #f2f2f2; }
+    tr.highlighted { background-color: #fff3a3 !important; }
+    .page-layout { display: flex; gap: 24px; align-items: flex-start; }
+    .sidebar {
+      min-width: 160px;
+      max-width: 180px;
+      background: #f5f7fa;
+      border: 1px solid #d0d8e4;
+      border-radius: 6px;
+      padding: 14px 12px;
+      font-size: 13px;
+    }
+    .sidebar h3 {
+      color: #2c5f8a;
+      font-size: 13px;
+      margin: 0 0 10px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid #d0d8e4;
+      padding-bottom: 6px;
+    }
+    .sidebar a {
+      display: block;
+      padding: 5px 0;
+      color: #2c5f8a;
+      text-decoration: none;
+      border-bottom: 1px solid #e8ecf0;
+      font-size: 13px;
+    }
+    .sidebar a:last-child { border-bottom: none; }
+    .sidebar a:hover { color: #1e4266; text-decoration: underline; }
+    .main-content { flex: 1; min-width: 0; }
+    .chart-container { position: relative; height: 380px; margin-top: 6px; }
+    .slider-wrap {
+      margin: 14px 0 4px 0;
+      font-size: 13px;
+      color: #555;
+    }
+    .slider-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+    .slider-top label { font-weight: bold; color: #2c5f8a; white-space: nowrap; }
+    .slider-top input[type=range] { flex: 1; accent-color: #2c5f8a; }
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #888;
+      margin-top: 2px;
+    }
+</style>
+</head>
+<body>
+  <div class="owrb-header">
+    <img src="../Branded-Logo-OWRB.svg" alt="Oklahoma Water Resources Board">
+  </div>
+  <a class="back-link" href="../index.html">&larr; Back to Well Index</a>
+  <h2>Well ID: 9628</h2>
+  <div class="well-meta">
+    <span><strong>Name:</strong> 9628</span>
+    <span><strong>Aquifer:</strong> Unknown</span>
+    <span><strong>County:</strong> Pawnee</span>
+  </div>
+  <div class="page-layout">
+  <div class="sidebar">
+    <h3>Links</h3>
+    <a href="https://www.owrb.ok.gov/wd/index.php" target="_blank">DPC Home / Login</a>
+    <a href="https://www.owrb.ok.gov/wd/search/search.php" target="_blank">Well Log Search</a>
+    <a href="https://www.owrb.ok.gov/wd/help.html" target="_blank">DPC Help</a>
+    <a href="https://oklahoma.gov/owrb.html" target="_blank">OWRB Home</a>
+    <a href="https://oklahoma.gov/owrb/wells-and-licensing/forms-and-guidance.html" target="_blank">DPC Forms</a>
+    <a href="https://oklahoma.gov/owrb/wells-and-licensing.html" target="_blank">DPC Programs</a>
+  </div>
+    <div class="main-content">
+      <div class="chart-container">
+        <canvas id="hydrograph"></canvas>
+      </div>
+
+      <div class="slider-wrap">
+        <div class="slider-top">
+          <label for="timeSlider">Time Period: <span id="sliderLabel">Period of Record</span></label>
+          <input type="range" id="timeSlider" min="0" max="4" step="1" value="0"
+                 oninput="updateChart(this.value)">
+          <button class="btn" onclick="resetSlider()">Reset</button>
+        </div>
+        <div class="slider-labels">
+          <span>All</span>
+          <span>20yr</span>
+          <span>15yr</span>
+          <span>10yr</span>
+          <span>5yr</span>
+        </div>
+      </div>
+
+      <div style="margin-top:10px;">
+        <button class="btn" onclick="saveChart()">&#8681; Save Graph</button>
+      </div>
+
+      <p class="note">NOTE: See Data Table Below</p>
+      <button class="btn" onclick="clearHighlight()">Clear Selection</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Measurement (ft)</th>
+            <th>Units</th>
+          </tr>
+        </thead>
+        <tbody>
+      <tr id="row-1"><td>03/28/1979</td><td>43.1</td><td>ft</td></tr>
+      <tr id="row-2"><td>02/19/1980</td><td>39.98</td><td>ft</td></tr>
+      <tr id="row-3"><td>03/25/1981</td><td>41.21</td><td>ft</td></tr>
+      <tr id="row-4"><td>02/23/1982</td><td>41.19</td><td>ft</td></tr>
+      <tr id="row-5"><td>02/25/1983</td><td>41.47</td><td>ft</td></tr>
+      <tr id="row-6"><td>02/24/1984</td><td>42.1</td><td>ft</td></tr>
+      <tr id="row-7"><td>01/18/1985</td><td>41.6</td><td>ft</td></tr>
+      <tr id="row-8"><td>01/23/1986</td><td>41.45</td><td>ft</td></tr>
+      <tr id="row-9"><td>02/06/1987</td><td>40.45</td><td>ft</td></tr>
+      <tr id="row-10"><td>01/25/1988</td><td>42.15</td><td>ft</td></tr>
+      <tr id="row-11"><td>01/30/1989</td><td>47.7</td><td>ft</td></tr>
+      <tr id="row-12"><td>01/03/1990</td><td>45.03</td><td>ft</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    var allDates   = ["03/28/1979", "02/19/1980", "03/25/1981", "02/23/1982", "02/25/1983", "02/24/1984", "01/18/1985", "01/23/1986", "02/06/1987", "01/25/1988", "01/30/1989", "01/03/1990"];
+    var allLevels  = [43.1, 39.98, 41.21, 41.19, 41.47, 42.1, 41.6, 41.45, 40.45, 42.15, 47.7, 45.03];
+    var wellID     = "9628";
+    var wellName   = "9628";
+    var aquifer    = "Unknown";
+    var county     = "Pawnee";
+    var currentPeriodLabel = "Period of Record";
+
+    var sliderLabels = ["Period of Record", "Last 20 Years", "Last 15 Years", "Last 10 Years", "Last 5 Years"];
+    var sliderYears  = [0, 20, 15, 10, 5];
+
+    var ctx = document.getElementById("hydrograph").getContext("2d");
+    var chart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: allDates.slice(),
+        datasets: [{
+          label: "Well ID " + wellID,
+          data: allLevels.slice(),
+          borderColor: "#2c5f8a",
+          backgroundColor: "rgba(44,95,138,0.08)",
+          pointBackgroundColor: "#c0392b",
+          pointBorderColor: "#c0392b",
+          pointRadius: 5,
+          tension: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: { duration: 300 },
+        onClick: function(evt, elements) {
+          if (!elements || elements.length === 0) return;
+          var visibleLabel = chart.data.labels[elements[0].index];
+          document.querySelectorAll("tr.highlighted").forEach(function(r) {
+            r.classList.remove("highlighted");
+          });
+          document.querySelectorAll("tbody tr").forEach(function(row) {
+            if (row.cells[0].textContent.trim() === visibleLabel) {
+              row.classList.add("highlighted");
+              row.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+          });
+        },
+        scales: {
+          y: {
+            reverse: true,
+            title: { display: true, text: "Depth to Water (ft)" }
+          },
+          x: {
+            title: { display: true, text: "Date" },
+            ticks: { maxTicksLimit: 12, maxRotation: 45 }
+          }
+        },
+        plugins: {
+          legend: { display: true },
+          title: {
+            display: true,
+            text: "Well ID(s) " + wellID + " - Depth to Water"
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return "Depth to Water: " + context.parsed.y + " ft";
+              }
+            }
+          }
+        }
+      }
+    });
+
+    function updateChart(val) {
+      val = parseInt(val);
+      currentPeriodLabel = sliderLabels[val];
+      document.getElementById("sliderLabel").textContent = currentPeriodLabel;
+      var years = sliderYears[val];
+      var filtDates = [], filtLevels = [];
+      if (years === 0) {
+        filtDates  = allDates.slice();
+        filtLevels = allLevels.slice();
+      } else {
+        var cutoff = new Date();
+        cutoff.setFullYear(cutoff.getFullYear() - years);
+        for (var i = 0; i < allDates.length; i++) {
+          if (new Date(allDates[i]) >= cutoff) {
+            filtDates.push(allDates[i]);
+            filtLevels.push(allLevels[i]);
+          }
+        }
+      }
+      chart.data.labels = filtDates;
+      chart.data.datasets[0].data = filtLevels;
+      chart.update();
+    }
+
+    function resetSlider() {
+      document.getElementById("timeSlider").value = 0;
+      updateChart(0);
+    }
+
+    function clearHighlight() {
+      document.querySelectorAll("tr.highlighted").forEach(function(r) {
+        r.classList.remove("highlighted");
+      });
+    }
+
+    function saveChart() {
+      var padding = 30;
+      var logoH   = 60;
+      var metaH   = 75;
+      var chartH  = 420;
+      var totalW  = 1100;
+      var totalH  = padding + logoH + 12 + metaH + chartH + padding;
+
+      var out = document.createElement("canvas");
+      out.width  = totalW;
+      out.height = totalH;
+      var c = out.getContext("2d");
+
+      c.fillStyle = "#ffffff";
+      c.fillRect(0, 0, totalW, totalH);
+
+      function drawContent(logoImg) {
+        if (logoImg) {
+          var logoW = logoImg.width * (logoH / logoImg.height);
+          c.drawImage(logoImg, padding, padding, logoW, logoH);
+        }
+        var ruleY = padding + logoH + 8;
+        c.fillStyle = "#2c5f8a";
+        c.fillRect(padding, ruleY, totalW - padding * 2, 3);
+
+        var metaY = ruleY + 20;
+        c.fillStyle = "#2c5f8a";
+        c.font = "bold 20px Arial";
+        c.fillText("Well ID: " + wellID, padding, metaY);
+
+        c.fillStyle = "#333333";
+        c.font = "14px Arial";
+        c.fillText("Name: " + wellName + "     Aquifer: " + aquifer + "     County: " + county,
+                   padding, metaY + 24);
+        c.fillText("Time Period: " + currentPeriodLabel, padding, metaY + 48);
+
+        var chartCanvas = document.getElementById("hydrograph");
+        c.drawImage(chartCanvas, padding, ruleY + metaH + 4, totalW - padding * 2, chartH);
+
+        var link = document.createElement("a");
+        link.download = "Well_" + wellID + "_Hydrograph.png";
+        link.href = out.toDataURL("image/png");
+        link.click();
+      }
+
+      var logoImg = new Image();
+      logoImg.crossOrigin = "anonymous";
+      logoImg.onload  = function() { drawContent(logoImg); };
+      logoImg.onerror = function() { drawContent(null); };
+      logoImg.src = "../Branded-Logo-OWRB.svg?" + new Date().getTime();
+    }
+  </script>
+</body>
+</html>
