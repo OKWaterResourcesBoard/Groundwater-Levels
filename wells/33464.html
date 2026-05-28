@@ -16,27 +16,27 @@
     }
     .owrb-header {
       padding: 12px 0 10px 0;
-      border-bottom: 3px solid #2c5f8a;
+      border-bottom: 3px solid #007BC2;
       margin-bottom: 18px;
     }
     .owrb-header img { height: 60px; width: auto; }
-    h1, h2 { color: #2c5f8a; margin-top: 8px; }
-    a { color: #2c5f8a; }
+    h1, h2 { color: #007BC2; margin-top: 8px; }
+    a { color: #007BC2; }
     .back-link { display: inline-block; margin-bottom: 10px; font-size: 14px; }
     .well-meta {
       font-size: 14px;
       color: #555;
       margin: 4px 0 14px 0;
-      line-height: 1.7;
+      line-height: 1.9;
     }
-    .well-meta span { margin-right: 24px; }
-    .well-meta strong { color: #2c5f8a; }
+    .well-meta span { margin-right: 24px; white-space: nowrap; }
+    .well-meta strong { color: #007BC2; }
     .note { text-align: center; font-weight: bold; margin: 24px 0 8px 0; font-size: 15px; }
     .btn {
       display: inline-block;
       margin-bottom: 10px;
       margin-right: 8px;
-      padding: 4px 12px;
+      padding: 5px 14px;
       font-size: 13px;
       background-color: #f0f0f0;
       border: 1px solid #ccc;
@@ -47,7 +47,7 @@
     .btn:hover { background-color: #e0e0e0; }
     table { border-collapse: collapse; width: 100%; margin-top: 4px; table-layout: fixed; }
     th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; width: 33.33%; }
-    th { background-color: #2c5f8a; color: white; }
+    th { background-color: #007BC2; color: white; }
     tr:nth-child(even) { background-color: #f2f2f2; }
     tr.highlighted { background-color: #fff3a3 !important; }
     .page-layout { display: flex; gap: 24px; align-items: flex-start; }
@@ -61,7 +61,7 @@
       font-size: 13px;
     }
     .sidebar h3 {
-      color: #2c5f8a;
+      color: #007BC2;
       font-size: 13px;
       margin: 0 0 10px 0;
       text-transform: uppercase;
@@ -72,35 +72,99 @@
     .sidebar a {
       display: block;
       padding: 5px 0;
-      color: #2c5f8a;
+      color: #007BC2;
       text-decoration: none;
       border-bottom: 1px solid #e8ecf0;
       font-size: 13px;
     }
     .sidebar a:last-child { border-bottom: none; }
-    .sidebar a:hover { color: #1e4266; text-decoration: underline; }
+    .sidebar a:hover { color: #005a8e; text-decoration: underline; }
+    .map-section {
+      margin-top: 14px;
+      border-top: 1px solid #d0d8e4;
+      padding-top: 10px;
+    }
+    .map-section h3 {
+      color: #007BC2;
+      font-size: 13px;
+      margin: 0 0 8px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
     .main-content { flex: 1; min-width: 0; }
     .chart-container { position: relative; height: 380px; margin-top: 6px; }
-    .slider-wrap {
-      margin: 14px 0 4px 0;
-      font-size: 13px;
-      color: #555;
-    }
-    .slider-top {
+
+    /* ---- Range Slider ---- */
+    .slider-wrap { margin: 16px 0 8px 0; }
+    .slider-header {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 4px;
+      justify-content: space-between;
+      margin-bottom: 6px;
     }
-    .slider-top label { font-weight: bold; color: #2c5f8a; white-space: nowrap; }
-    .slider-top input[type=range] { flex: 1; accent-color: #2c5f8a; }
+    .slider-header label { font-weight: bold; color: #007BC2; font-size: 13px; }
+    .slider-track-wrap {
+      position: relative;
+      height: 28px;
+      display: flex;
+      align-items: center;
+    }
+    .slider-track {
+      position: absolute;
+      left: 0; right: 0;
+      height: 4px;
+      background: #ccd8e4;
+      border-radius: 2px;
+    }
+    .slider-fill {
+      position: absolute;
+      left: 0;
+      height: 4px;
+      background: #007BC2;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    input[type=range].styled-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      position: absolute;
+      left: 0; right: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      outline: none;
+      cursor: pointer;
+      margin: 0;
+    }
+    input[type=range].styled-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 22px;
+      background: #007BC2;
+      border-radius: 3px;
+      cursor: pointer;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    input[type=range].styled-slider::-moz-range-thumb {
+      width: 16px;
+      height: 22px;
+      background: #007BC2;
+      border-radius: 3px;
+      cursor: pointer;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
     .slider-labels {
       display: flex;
       justify-content: space-between;
       font-size: 11px;
       color: #888;
-      margin-top: 2px;
+      margin-top: 4px;
     }
+    .slider-labels span { text-align: center; }
 </style>
 </head>
 <body>
@@ -111,30 +175,58 @@
   <h2>Well ID: 33464</h2>
   <div class="well-meta">
     <span><strong>Name:</strong> Eldorado</span>
-    <span><strong>Aquifer:</strong> Blaine</span>
+    <span><strong>Basin:</strong> Blaine</span>
     <span><strong>County:</strong> Harmon</span>
   </div>
   <div class="page-layout">
-  <div class="sidebar">
-    <h3>Links</h3>
-    <a href="https://www.owrb.ok.gov/wd/index.php" target="_blank">DPC Home / Login</a>
-    <a href="https://www.owrb.ok.gov/wd/search/search.php" target="_blank">Well Log Search</a>
-    <a href="https://www.owrb.ok.gov/wd/help.html" target="_blank">DPC Help</a>
-    <a href="https://oklahoma.gov/owrb.html" target="_blank">OWRB Home</a>
-    <a href="https://oklahoma.gov/owrb/wells-and-licensing/forms-and-guidance.html" target="_blank">DPC Forms</a>
-    <a href="https://oklahoma.gov/owrb/wells-and-licensing.html" target="_blank">DPC Programs</a>
-  </div>
+    <div class="sidebar">
+      <h3>Links</h3>
+      <a href="https://oklahoma.gov/owrb.html" target="_blank">OWRB Home</a>
+      <a href="https://www.owrb.ok.gov/wd/search/search.php" target="_blank">Well Log Search</a>
+      <a href="https://oklahoma.gov/owrb/wells-and-licensing.html" target="_blank">Wells &amp; Licensing</a>
+      <a href="https://oklahoma.gov/owrb/data-and-maps/water-monitoring-and-data.html" target="_blank">Water Monitoring &amp; Data</a>
+      <div class="map-section">
+        <h3>Well Location</h3>
+        
+    <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg"
+         style="width:100%;border:1px solid #d0d8e4;border-radius:4px;background:#f9fbfd;">
+      <!-- Oklahoma state outline (approximate) -->
+      <!-- Panhandle top -->
+      <rect x="0" y="0"
+            width="70.1"
+            height="11.9"
+            fill="#dce8f5" stroke="#007BC2" stroke-width="0.8"/>
+      <!-- Main body -->
+      <rect x="0" y="11.9"
+            width="200"
+            height="68.1"
+            fill="#dce8f5" stroke="#007BC2" stroke-width="0.8"/>
+      <!-- Full bounding box outline -->
+      <rect x="0" y="0" width="200" height="80"
+            fill="none" stroke="#007BC2" stroke-width="0.8"/>
+      <!-- Well dot -->
+      <circle cx="76.6" cy="56.2" r="3.5"
+              fill="#B5491A" stroke="#fff" stroke-width="1"/>
+    </svg>
+      </div>
+    </div>
     <div class="main-content">
       <div class="chart-container">
         <canvas id="hydrograph"></canvas>
       </div>
 
+      <!-- Slider below chart -->
       <div class="slider-wrap">
-        <div class="slider-top">
-          <label for="timeSlider">Time Period: <span id="sliderLabel">Period of Record</span></label>
-          <input type="range" id="timeSlider" min="0" max="4" step="1" value="0"
-                 oninput="updateChart(this.value)">
+        <div class="slider-header">
+          <label>Time Period: <span id="sliderLabel">Period of Record</span></label>
           <button class="btn" onclick="resetSlider()">Reset</button>
+        </div>
+        <div class="slider-track-wrap">
+          <div class="slider-track"></div>
+          <div class="slider-fill" id="sliderFill"></div>
+          <input type="range" id="timeSlider" class="styled-slider"
+                 min="0" max="4" step="1" value="0"
+                 oninput="updateChart(this.value)">
         </div>
         <div class="slider-labels">
           <span>All</span>
@@ -155,7 +247,7 @@
         <thead>
           <tr>
             <th>Date</th>
-            <th>Measurement (ft)</th>
+            <th>Depth to Water</th>
             <th>Units</th>
           </tr>
         </thead>
@@ -199,7 +291,7 @@
     var allLevels  = [36.44, 36.02, 47.25, 54.81, 52.75, 55.84, 62.74, 67.56, 56.95, 61.4, 63.52, 53.05, 79.5, 44.4, 40.22, 41.13, 37.68, 41.39, 38.14, 38.63, 42.67, 50.46, 50.46, 57.96, 42.74, 37.78, 37.2, 52.87, 58.98];
     var wellID     = "33464";
     var wellName   = "Eldorado";
-    var aquifer    = "Blaine";
+    var basin      = "Blaine";
     var county     = "Harmon";
     var currentPeriodLabel = "Period of Record";
 
@@ -214,10 +306,10 @@
         datasets: [{
           label: "Well ID " + wellID,
           data: allLevels.slice(),
-          borderColor: "#2c5f8a",
-          backgroundColor: "rgba(44,95,138,0.08)",
-          pointBackgroundColor: "#c0392b",
-          pointBorderColor: "#c0392b",
+          borderColor: "#007BC2",
+          backgroundColor: "rgba(0,123,194,0.08)",
+          pointBackgroundColor: "#B5491A",
+          pointBorderColor: "#B5491A",
           pointRadius: 5,
           tension: 0
         }]
@@ -266,8 +358,14 @@
       }
     });
 
+    function updateSliderFill(val) {
+      var pct = (val / 4) * 100;
+      document.getElementById("sliderFill").style.width = pct + "%";
+    }
+
     function updateChart(val) {
       val = parseInt(val);
+      updateSliderFill(val);
       currentPeriodLabel = sliderLabels[val];
       document.getElementById("sliderLabel").textContent = currentPeriodLabel;
       var years = sliderYears[val];
@@ -323,17 +421,17 @@
           c.drawImage(logoImg, padding, padding, logoW, logoH);
         }
         var ruleY = padding + logoH + 8;
-        c.fillStyle = "#2c5f8a";
+        c.fillStyle = "#007BC2";
         c.fillRect(padding, ruleY, totalW - padding * 2, 3);
 
         var metaY = ruleY + 20;
-        c.fillStyle = "#2c5f8a";
+        c.fillStyle = "#007BC2";
         c.font = "bold 20px Arial";
         c.fillText("Well ID: " + wellID, padding, metaY);
 
         c.fillStyle = "#333333";
         c.font = "14px Arial";
-        c.fillText("Name: " + wellName + "     Aquifer: " + aquifer + "     County: " + county,
+        c.fillText("Name: " + wellName + "     Basin: " + basin + "     County: " + county,
                    padding, metaY + 24);
         c.fillText("Time Period: " + currentPeriodLabel, padding, metaY + 48);
 
@@ -352,6 +450,9 @@
       logoImg.onerror = function() { drawContent(null); };
       logoImg.src = "../Branded-Logo-OWRB.svg?" + new Date().getTime();
     }
+
+    // Init slider fill
+    updateSliderFill(0);
   </script>
 </body>
 </html>
