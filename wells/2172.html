@@ -24,25 +24,16 @@
     a { color: #007BC2; }
     .back-link { display: inline-block; margin-bottom: 10px; font-size: 14px; }
     .well-meta {
-      font-size: 14px;
-      color: #555;
-      margin: 4px 0 14px 0;
-      line-height: 1.9;
+      font-size: 14px; color: #555;
+      margin: 4px 0 14px 0; line-height: 1.9;
     }
     .well-meta span { margin-right: 24px; white-space: nowrap; }
     .well-meta strong { color: #007BC2; }
     .note { text-align: center; font-weight: bold; margin: 24px 0 8px 0; font-size: 15px; }
     .btn {
-      display: inline-block;
-      margin-bottom: 10px;
-      margin-right: 8px;
-      padding: 5px 14px;
-      font-size: 13px;
-      background-color: #f0f0f0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      cursor: pointer;
-      color: #333;
+      display: inline-block; margin-bottom: 10px; margin-right: 8px;
+      padding: 5px 14px; font-size: 13px; background-color: #f0f0f0;
+      border: 1px solid #ccc; border-radius: 4px; cursor: pointer; color: #333;
     }
     .btn:hover { background-color: #e0e0e0; }
     table { border-collapse: collapse; width: 100%; margin-top: 4px; table-layout: fixed; }
@@ -52,119 +43,28 @@
     tr.highlighted { background-color: #fff3a3 !important; }
     .page-layout { display: flex; gap: 24px; align-items: flex-start; }
     .sidebar {
-      min-width: 160px;
-      max-width: 180px;
-      background: #f5f7fa;
-      border: 1px solid #d0d8e4;
-      border-radius: 6px;
-      padding: 14px 12px;
-      font-size: 13px;
+      min-width: 165px; max-width: 185px;
+      background: #f5f7fa; border: 1px solid #d0d8e4;
+      border-radius: 6px; padding: 14px 12px; font-size: 13px;
     }
     .sidebar h3 {
-      color: #007BC2;
-      font-size: 13px;
-      margin: 0 0 10px 0;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      border-bottom: 1px solid #d0d8e4;
-      padding-bottom: 6px;
+      color: #007BC2; font-size: 12px; margin: 0 0 10px 0;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      border-bottom: 1px solid #d0d8e4; padding-bottom: 6px; font-weight: bold;
     }
     .sidebar a {
-      display: block;
-      padding: 5px 0;
-      color: #007BC2;
-      text-decoration: none;
-      border-bottom: 1px solid #e8ecf0;
-      font-size: 13px;
+      display: block; padding: 5px 0; color: #007BC2;
+      text-decoration: none; border-bottom: 1px solid #e8ecf0; font-size: 13px;
     }
-    .sidebar a:last-child { border-bottom: none; }
+    .sidebar a:last-of-type { border-bottom: none; }
     .sidebar a:hover { color: #005a8e; text-decoration: underline; }
-    .map-section {
-      margin-top: 14px;
-      border-top: 1px solid #d0d8e4;
-      padding-top: 10px;
-    }
+    .map-section { margin-top: 14px; }
     .map-section h3 {
-      color: #007BC2;
-      font-size: 13px;
-      margin: 0 0 8px 0;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      color: #007BC2; font-size: 12px; margin: 0 0 6px 0;
+      text-transform: uppercase; letter-spacing: 0.05em; font-weight: bold;
     }
     .main-content { flex: 1; min-width: 0; }
     .chart-container { position: relative; height: 380px; margin-top: 6px; }
-
-    /* ---- Range Slider ---- */
-    .slider-wrap { margin: 16px 0 8px 0; }
-    .slider-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 6px;
-    }
-    .slider-header label { font-weight: bold; color: #007BC2; font-size: 13px; }
-    .slider-track-wrap {
-      position: relative;
-      height: 28px;
-      display: flex;
-      align-items: center;
-    }
-    .slider-track {
-      position: absolute;
-      left: 0; right: 0;
-      height: 4px;
-      background: #ccd8e4;
-      border-radius: 2px;
-    }
-    .slider-fill {
-      position: absolute;
-      left: 0;
-      height: 4px;
-      background: #007BC2;
-      border-radius: 2px;
-      pointer-events: none;
-    }
-    input[type=range].styled-slider {
-      -webkit-appearance: none;
-      appearance: none;
-      position: absolute;
-      left: 0; right: 0;
-      width: 100%;
-      height: 4px;
-      background: transparent;
-      outline: none;
-      cursor: pointer;
-      margin: 0;
-    }
-    input[type=range].styled-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 16px;
-      height: 22px;
-      background: #007BC2;
-      border-radius: 3px;
-      cursor: pointer;
-      border: 2px solid #fff;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-      position: relative;
-    }
-    input[type=range].styled-slider::-moz-range-thumb {
-      width: 16px;
-      height: 22px;
-      background: #007BC2;
-      border-radius: 3px;
-      cursor: pointer;
-      border: 2px solid #fff;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-    }
-    .slider-labels {
-      display: flex;
-      justify-content: space-between;
-      font-size: 11px;
-      color: #888;
-      margin-top: 4px;
-    }
-    .slider-labels span { text-align: center; }
 </style>
 </head>
 <body>
@@ -187,69 +87,21 @@
       <a href="https://oklahoma.gov/owrb/data-and-maps/water-monitoring-and-data.html" target="_blank">Water Monitoring &amp; Data</a>
       <div class="map-section">
         <h3>Well Location</h3>
-        
-    <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg"
-         style="width:100%;border:1px solid #d0d8e4;border-radius:4px;background:#f9fbfd;">
-      <!-- Oklahoma state outline (approximate) -->
-      <!-- Panhandle top -->
-      <rect x="0" y="0"
-            width="70.1"
-            height="11.9"
-            fill="#dce8f5" stroke="#007BC2" stroke-width="0.8"/>
-      <!-- Main body -->
-      <rect x="0" y="11.9"
-            width="200"
-            height="68.1"
-            fill="#dce8f5" stroke="#007BC2" stroke-width="0.8"/>
-      <!-- Full bounding box outline -->
-      <rect x="0" y="0" width="200" height="80"
-            fill="none" stroke="#007BC2" stroke-width="0.8"/>
-      <!-- Well dot -->
-      <circle cx="9.3" cy="6.2" r="3.5"
-              fill="#B5491A" stroke="#fff" stroke-width="1"/>
-    </svg>
+        <svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg" style="width:100%;border:1px solid #d0d8e4;border-radius:4px;background:#f9fbfd;"><path d="M 0,0 L 68,0 L 68,0.2 L 116.7,0.1 L 163.4,0 L 200,0 L 200,43 L 198.8,89.4 L 175.1,83.2 L 149.4,83.9 L 135.4,86.8 L 123.7,85.1 L 116.7,82.5 L 105.1,84.2 L 93.4,84.2 L 81.7,86.4 L 70.1,84.2 L 70.1,13.3 L 0,13.3 L 0,0 Z" fill="#dce8f5" stroke="#007BC2" stroke-width="1.2" stroke-linejoin="round"/><circle cx="9.3" cy="7" r="3" fill="#B5491A" stroke="#fff" stroke-width="1"/></svg>
       </div>
     </div>
     <div class="main-content">
       <div class="chart-container">
         <canvas id="hydrograph"></canvas>
       </div>
-
-      <!-- Slider below chart -->
-      <div class="slider-wrap">
-        <div class="slider-header">
-          <label>Time Period: <span id="sliderLabel">Period of Record</span></label>
-          <button class="btn" onclick="resetSlider()">Reset</button>
-        </div>
-        <div class="slider-track-wrap">
-          <div class="slider-track"></div>
-          <div class="slider-fill" id="sliderFill"></div>
-          <input type="range" id="timeSlider" class="styled-slider"
-                 min="0" max="4" step="1" value="0"
-                 oninput="updateChart(this.value)">
-        </div>
-        <div class="slider-labels">
-          <span>All</span>
-          <span>20yr</span>
-          <span>15yr</span>
-          <span>10yr</span>
-          <span>5yr</span>
-        </div>
-      </div>
-
-      <div style="margin-top:10px;">
+      <div style="margin-top:12px;">
         <button class="btn" onclick="saveChart()">&#8681; Save Graph</button>
       </div>
-
       <p class="note">NOTE: See Data Table Below</p>
       <button class="btn" onclick="clearHighlight()">Clear Selection</button>
       <table>
         <thead>
-          <tr>
-            <th>Date</th>
-            <th>Depth to Water</th>
-            <th>Units</th>
-          </tr>
+          <tr><th>Date</th><th>Depth to Water</th><th>Units</th></tr>
         </thead>
         <tbody>
       <tr id="row-1"><td>01/17/1978</td><td>160.66</td><td>ft</td></tr>
@@ -275,7 +127,6 @@
       </table>
     </div>
   </div>
-
   <script>
     var allDates   = ["01/17/1978", "01/07/1980", "01/05/1981", "01/19/1982", "01/10/1983", "01/09/1984", "01/07/1985", "01/13/1986", "01/05/1987", "01/04/1988", "01/04/1989", "01/11/1990", "01/24/1991", "01/16/1992", "01/13/1994", "01/11/1995", "01/10/1996", "01/08/1997", "01/15/1998"];
     var allLevels  = [160.66, 160.4, 160.86, 160.54, 159.84, 159.77, 159.98, 159.52, 159.79, 160.64, 159.81, 159.69, 160.32, 159.92, 163.16, 164.27, 164.48, 164.55, 164.69];
@@ -284,9 +135,6 @@
     var basin      = "Unknown";
     var county     = "Cimarron";
     var currentPeriodLabel = "Period of Record";
-
-    var sliderLabels = ["Period of Record", "Last 20 Years", "Last 15 Years", "Last 10 Years", "Last 5 Years"];
-    var sliderYears  = [0, 20, 15, 10, 5];
 
     var ctx = document.getElementById("hydrograph").getContext("2d");
     var chart = new Chart(ctx, {
@@ -311,9 +159,7 @@
         onClick: function(evt, elements) {
           if (!elements || elements.length === 0) return;
           var visibleLabel = chart.data.labels[elements[0].index];
-          document.querySelectorAll("tr.highlighted").forEach(function(r) {
-            r.classList.remove("highlighted");
-          });
+          document.querySelectorAll("tr.highlighted").forEach(function(r) { r.classList.remove("highlighted"); });
           document.querySelectorAll("tbody tr").forEach(function(row) {
             if (row.cells[0].textContent.trim() === visibleLabel) {
               row.classList.add("highlighted");
@@ -322,127 +168,48 @@
           });
         },
         scales: {
-          y: {
-            reverse: true,
-            title: { display: true, text: "Depth to Water (ft)" }
-          },
-          x: {
-            title: { display: true, text: "Date" },
-            ticks: { maxTicksLimit: 12, maxRotation: 45 }
-          }
+          y: { reverse: true, title: { display: true, text: "Depth to Water (ft)" } },
+          x: { title: { display: true, text: "Date" }, ticks: { maxTicksLimit: 12, maxRotation: 45 } }
         },
         plugins: {
           legend: { display: true },
-          title: {
-            display: true,
-            text: "Well ID(s) " + wellID + " - Depth to Water"
-          },
-          tooltip: {
-            callbacks: {
-              label: function(context) {
-                return "Depth to Water: " + context.parsed.y + " ft";
-              }
-            }
-          }
+          title: { display: true, text: "Well ID(s) " + wellID + " - Depth to Water" },
+          tooltip: { callbacks: { label: function(ctx) { return "Depth to Water: " + ctx.parsed.y + " ft"; } } }
         }
       }
     });
 
-    function updateSliderFill(val) {
-      var pct = (val / 4) * 100;
-      document.getElementById("sliderFill").style.width = pct + "%";
-    }
-
-    function updateChart(val) {
-      val = parseInt(val);
-      updateSliderFill(val);
-      currentPeriodLabel = sliderLabels[val];
-      document.getElementById("sliderLabel").textContent = currentPeriodLabel;
-      var years = sliderYears[val];
-      var filtDates = [], filtLevels = [];
-      if (years === 0) {
-        filtDates  = allDates.slice();
-        filtLevels = allLevels.slice();
-      } else {
-        var cutoff = new Date();
-        cutoff.setFullYear(cutoff.getFullYear() - years);
-        for (var i = 0; i < allDates.length; i++) {
-          if (new Date(allDates[i]) >= cutoff) {
-            filtDates.push(allDates[i]);
-            filtLevels.push(allLevels[i]);
-          }
-        }
-      }
-      chart.data.labels = filtDates;
-      chart.data.datasets[0].data = filtLevels;
-      chart.update();
-    }
-
-    function resetSlider() {
-      document.getElementById("timeSlider").value = 0;
-      updateChart(0);
-    }
-
     function clearHighlight() {
-      document.querySelectorAll("tr.highlighted").forEach(function(r) {
-        r.classList.remove("highlighted");
-      });
+      document.querySelectorAll("tr.highlighted").forEach(function(r) { r.classList.remove("highlighted"); });
     }
 
     function saveChart() {
-      var padding = 30;
-      var logoH   = 60;
-      var metaH   = 75;
-      var chartH  = 420;
-      var totalW  = 1100;
-      var totalH  = padding + logoH + 12 + metaH + chartH + padding;
-
+      var padding = 30, logoH = 60, metaH = 75, chartH = 420, totalW = 1100;
+      var totalH = padding + logoH + 12 + metaH + chartH + padding;
       var out = document.createElement("canvas");
-      out.width  = totalW;
-      out.height = totalH;
+      out.width = totalW; out.height = totalH;
       var c = out.getContext("2d");
-
-      c.fillStyle = "#ffffff";
-      c.fillRect(0, 0, totalW, totalH);
-
+      c.fillStyle = "#ffffff"; c.fillRect(0, 0, totalW, totalH);
       function drawContent(logoImg) {
-        if (logoImg) {
-          var logoW = logoImg.width * (logoH / logoImg.height);
-          c.drawImage(logoImg, padding, padding, logoW, logoH);
-        }
+        if (logoImg) { var logoW = logoImg.width * (logoH / logoImg.height); c.drawImage(logoImg, padding, padding, logoW, logoH); }
         var ruleY = padding + logoH + 8;
-        c.fillStyle = "#007BC2";
-        c.fillRect(padding, ruleY, totalW - padding * 2, 3);
-
+        c.fillStyle = "#007BC2"; c.fillRect(padding, ruleY, totalW - padding * 2, 3);
         var metaY = ruleY + 20;
-        c.fillStyle = "#007BC2";
-        c.font = "bold 20px Arial";
-        c.fillText("Well ID: " + wellID, padding, metaY);
-
-        c.fillStyle = "#333333";
-        c.font = "14px Arial";
-        c.fillText("Name: " + wellName + "     Basin: " + basin + "     County: " + county,
-                   padding, metaY + 24);
+        c.fillStyle = "#007BC2"; c.font = "bold 20px Arial"; c.fillText("Well ID: " + wellID, padding, metaY);
+        c.fillStyle = "#333333"; c.font = "14px Arial";
+        c.fillText("Name: " + wellName + "     Basin: " + basin + "     County: " + county, padding, metaY + 24);
         c.fillText("Time Period: " + currentPeriodLabel, padding, metaY + 48);
-
-        var chartCanvas = document.getElementById("hydrograph");
-        c.drawImage(chartCanvas, padding, ruleY + metaH + 4, totalW - padding * 2, chartH);
-
+        c.drawImage(document.getElementById("hydrograph"), padding, ruleY + metaH + 4, totalW - padding * 2, chartH);
         var link = document.createElement("a");
         link.download = "Well_" + wellID + "_Hydrograph.png";
-        link.href = out.toDataURL("image/png");
-        link.click();
+        link.href = out.toDataURL("image/png"); link.click();
       }
-
       var logoImg = new Image();
       logoImg.crossOrigin = "anonymous";
       logoImg.onload  = function() { drawContent(logoImg); };
       logoImg.onerror = function() { drawContent(null); };
       logoImg.src = "../Branded-Logo-OWRB.svg?" + new Date().getTime();
     }
-
-    // Init slider fill
-    updateSliderFill(0);
   </script>
 </body>
 </html>
