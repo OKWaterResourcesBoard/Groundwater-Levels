@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Well 5514 - OWRB GMAP</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -65,6 +67,48 @@
     }
     .main-content { flex: 1; min-width: 0; }
     .chart-container { position: relative; height: 380px; margin-top: 6px; }
+
+    /* noUiSlider overrides to match OWRB colors */
+    .slider-wrap { margin: 16px 0 10px 0; }
+    .slider-header {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-bottom: 10px;
+    }
+    .slider-header label { font-weight: bold; color: #007BC2; font-size: 13px; }
+    #timeSlider { margin: 0 4px; }
+    .noUi-target {
+      background: #ccd8e4;
+      border-radius: 3px;
+      border: none;
+      box-shadow: none;
+      height: 6px;
+    }
+    .noUi-connect { background: #007BC2; }
+    .noUi-handle {
+      width: 18px !important;
+      height: 28px !important;
+      top: -11px !important;
+      right: -9px !important;
+      background: #007BC2;
+      border: 2px solid #fff;
+      border-radius: 3px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      cursor: grab;
+    }
+    .noUi-handle:active { cursor: grabbing; }
+    .noUi-handle::before,
+    .noUi-handle::after {
+      display: none;
+    }
+    .noUi-tooltip {
+      background: #007BC2;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      font-size: 11px;
+      padding: 2px 6px;
+    }
+    .slider-hint { font-size: 11px; color: #aaa; margin-top: 6px; }
 </style>
 </head>
 <body>
@@ -94,6 +138,16 @@
       <div class="chart-container">
         <canvas id="hydrograph"></canvas>
       </div>
+
+      <div class="slider-wrap">
+        <div class="slider-header">
+          <label>Timestamp: <span id="sliderLabel">Full Record</span></label>
+          <button class="btn" onclick="resetSlider()">Reset</button>
+        </div>
+        <div id="timeSlider"></div>
+        <div class="slider-hint">Drag handles to zoom &bull; Double-click to reset</div>
+      </div>
+
       <div style="margin-top:12px;">
         <button class="btn" onclick="saveChart()">&#8681; Save Graph</button>
       </div>
@@ -154,6 +208,7 @@
       </table>
     </div>
   </div>
+
   <script>
     var allDates   = ["01/28/1980", "02/03/1981", "01/19/1982", "01/10/1983", "01/10/1984", "01/08/1985", "01/22/1986", "01/05/1987", "01/04/1988", "01/18/1989", "01/17/1990", "01/17/1991", "01/08/1992", "04/08/1993", "01/04/1994", "01/14/1995", "01/19/1996", "01/08/1997", "01/27/1998", "02/08/1999", "03/06/2000", "03/09/2001", "03/08/2002", "01/03/2003", "02/20/2004", "03/16/2005", "03/16/2006", "01/17/2008", "01/06/2009", "01/20/2010", "01/06/2011", "01/10/2012", "01/16/2013", "02/11/2014", "01/08/2015", "09/14/2015", "01/26/2016", "01/04/2017", "01/03/2018", "01/23/2019", "01/15/2020", "02/03/2021", "01/31/2022", "01/11/2023", "01/30/2024", "01/27/2025"];
     var allLevels  = [63.05, 64.03, 64.26, 64.59, 64.35, 64.41, 64.43, 63.62, 62.74, 61.86, 60.3, 60.97, 60.45, 61.07, 61.5, 60.45, 60.6, 60.66, 59.5, 60.5, 58.2, 56.05, 54.53, 54.3, 53.54, 53.25, 53.25, 52.26, 51.5, 53.04, 52.95, 53.11, 54.39, 54.54, 55.23, 59.83, 55.45, 55.11, 55.98, 55.61, 54.42, 54.29, 54.51, 55.56, 56.04, 57.08];
@@ -161,8 +216,10 @@
     var wellName   = "MM5514";
     var basin      = "North Canadian River";
     var county     = "Woodward";
-    var currentPeriodLabel = "Period of Record";
+    var nRec       = 46;
+    var currentPeriodLabel = "Full Record";
 
+    // ---- Chart first ----
     var ctx = document.getElementById("hydrograph").getContext("2d");
     var chart = new Chart(ctx, {
       type: "line",
@@ -182,7 +239,7 @@
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        animation: { duration: 300 },
+        animation: { duration: 200 },
         onClick: function(evt, elements) {
           if (!elements || elements.length === 0) return;
           var visibleLabel = chart.data.labels[elements[0].index];
@@ -205,6 +262,40 @@
         }
       }
     });
+
+    // ---- noUiSlider (after chart is ready) ----
+    var sliderEl = document.getElementById("timeSlider");
+    noUiSlider.create(sliderEl, {
+      start: [0, nRec - 1],
+      step: 1,
+      connect: true,
+      range: { min: 0, max: nRec - 1 },
+      tooltips: [
+        { to: function(v) { return allDates[Math.round(v)]; } },
+        { to: function(v) { return allDates[Math.round(v)]; } }
+      ]
+    });
+
+    sliderEl.noUiSlider.on("slide", function(values) {
+      var s = Math.round(parseFloat(values[0]));
+      var e = Math.round(parseFloat(values[1]));
+      currentPeriodLabel = allDates[s] + " to " + allDates[e];
+      document.getElementById("sliderLabel").textContent = currentPeriodLabel;
+      chart.data.labels = allDates.slice(s, e + 1);
+      chart.data.datasets[0].data = allLevels.slice(s, e + 1);
+      chart.update();
+    });
+
+    function resetSlider() {
+      sliderEl.noUiSlider.set([0, nRec - 1]);
+      currentPeriodLabel = "Full Record";
+      document.getElementById("sliderLabel").textContent = currentPeriodLabel;
+      chart.data.labels = allDates.slice();
+      chart.data.datasets[0].data = allLevels.slice();
+      chart.update();
+    }
+
+    sliderEl.addEventListener("dblclick", function() { resetSlider(); });
 
     function clearHighlight() {
       document.querySelectorAll("tr.highlighted").forEach(function(r) { r.classList.remove("highlighted"); });
