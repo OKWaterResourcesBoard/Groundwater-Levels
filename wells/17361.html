@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Well 17361 - OWRB GMAP</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -65,6 +67,33 @@
     }
     .main-content { flex: 1; min-width: 0; }
     .chart-container { position: relative; height: 380px; margin-top: 6px; }
+
+    /* noUiSlider overrides */
+    .slider-wrap { margin: 16px 0 10px 0; }
+    .slider-header {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-bottom: 10px;
+    }
+    .slider-header label { font-weight: bold; color: #007BC2; font-size: 13px; }
+    #timeSlider { margin: 0 4px; }
+    .noUi-target {
+      background: #ccd8e4; border-radius: 3px;
+      border: none; box-shadow: none; height: 6px;
+    }
+    .noUi-connect { background: #007BC2; }
+    .noUi-handle {
+      width: 18px !important; height: 28px !important;
+      top: -11px !important; right: -9px !important;
+      background: #007BC2; border: 2px solid #fff;
+      border-radius: 3px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); cursor: grab;
+    }
+    .noUi-handle:active { cursor: grabbing; }
+    .noUi-handle::before, .noUi-handle::after { display: none; }
+    .noUi-tooltip {
+      background: #007BC2; color: #fff; border: none;
+      border-radius: 3px; font-size: 11px; padding: 2px 6px;
+    }
+    .slider-hint { font-size: 11px; color: #aaa; margin-top: 6px; }
 </style>
 </head>
 <body>
@@ -75,7 +104,7 @@
   <h2>Well ID: 17361</h2>
   <div class="well-meta">
     <span><strong>Name:</strong> ALRS-016</span>
-    <span><strong>Aquifer:</strong> N/A</span>
+    <span><strong>Aquifer:</strong> Antlers</span>
     <span><strong>County:</strong> Mccurtain</span>
   </div>
   <div class="page-layout">
@@ -93,6 +122,14 @@
     <div class="main-content">
       <div class="chart-container">
         <canvas id="hydrograph"></canvas>
+      </div>
+      <div class="slider-wrap">
+        <div class="slider-header">
+          <label>Timestamp: <span id="sliderLabel">Full Record</span></label>
+          <button class="btn" onclick="resetSlider()">Reset</button>
+        </div>
+        <div id="timeSlider"></div>
+        <div class="slider-hint">Drag handles to zoom &bull; Double-click to reset</div>
       </div>
       <div style="margin-top:12px;">
         <button class="btn" onclick="saveChart()">&#8681; Save Graph</button>
@@ -124,9 +161,10 @@
     var allLevels  = [26.85, 25.87, 29.47, 30.81, 27.23, 26.12, 25.91, 29.1, 28.75, 27.29, 28.78];
     var wellID     = "17361";
     var wellName   = "ALRS-016";
-    var aquifer    = "N/A";
+    var aquifer    = "Antlers";
     var county     = "Mccurtain";
-    var currentPeriodLabel = "Period of Record";
+    var currentPeriodLabel = "Full Record";
+    var nRec = allDates.length;
 
     var ctx = document.getElementById("hydrograph").getContext("2d");
     var chart = new Chart(ctx, {
@@ -170,6 +208,40 @@
         }
       }
     });
+
+    // noUiSlider (after chart is ready)
+    var sliderEl = document.getElementById("timeSlider");
+    noUiSlider.create(sliderEl, {
+      start: [0, nRec - 1],
+      step: 1,
+      connect: true,
+      range: { min: 0, max: nRec - 1 },
+      tooltips: [
+        { to: function(v) { return allDates[Math.round(v)]; } },
+        { to: function(v) { return allDates[Math.round(v)]; } }
+      ]
+    });
+
+    sliderEl.noUiSlider.on("slide", function(values) {
+      var s = Math.round(parseFloat(values[0]));
+      var e = Math.round(parseFloat(values[1]));
+      currentPeriodLabel = allDates[s] + " to " + allDates[e];
+      document.getElementById("sliderLabel").textContent = currentPeriodLabel;
+      chart.data.labels = allDates.slice(s, e + 1);
+      chart.data.datasets[0].data = allLevels.slice(s, e + 1);
+      chart.update();
+    });
+
+    function resetSlider() {
+      sliderEl.noUiSlider.set([0, nRec - 1]);
+      currentPeriodLabel = "Full Record";
+      document.getElementById("sliderLabel").textContent = currentPeriodLabel;
+      chart.data.labels = allDates.slice();
+      chart.data.datasets[0].data = allLevels.slice();
+      chart.update();
+    }
+
+    sliderEl.addEventListener("dblclick", function() { resetSlider(); });
 
     function clearHighlight() {
       document.querySelectorAll("tr.highlighted").forEach(function(r) { r.classList.remove("highlighted"); });
