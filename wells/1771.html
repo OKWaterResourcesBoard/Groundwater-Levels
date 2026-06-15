@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Well 1771 - OWRB GMAP</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -67,48 +65,6 @@
     }
     .main-content { flex: 1; min-width: 0; }
     .chart-container { position: relative; height: 380px; margin-top: 6px; }
-
-    /* noUiSlider overrides to match OWRB colors */
-    .slider-wrap { margin: 16px 0 10px 0; }
-    .slider-header {
-      display: flex; align-items: center;
-      justify-content: space-between; margin-bottom: 10px;
-    }
-    .slider-header label { font-weight: bold; color: #007BC2; font-size: 13px; }
-    #timeSlider { margin: 0 4px; }
-    .noUi-target {
-      background: #ccd8e4;
-      border-radius: 3px;
-      border: none;
-      box-shadow: none;
-      height: 6px;
-    }
-    .noUi-connect { background: #007BC2; }
-    .noUi-handle {
-      width: 18px !important;
-      height: 28px !important;
-      top: -11px !important;
-      right: -9px !important;
-      background: #007BC2;
-      border: 2px solid #fff;
-      border-radius: 3px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      cursor: grab;
-    }
-    .noUi-handle:active { cursor: grabbing; }
-    .noUi-handle::before,
-    .noUi-handle::after {
-      display: none;
-    }
-    .noUi-tooltip {
-      background: #007BC2;
-      color: #fff;
-      border: none;
-      border-radius: 3px;
-      font-size: 11px;
-      padding: 2px 6px;
-    }
-    .slider-hint { font-size: 11px; color: #aaa; margin-top: 6px; }
 </style>
 </head>
 <body>
@@ -119,7 +75,7 @@
   <h2>Well ID: 1771</h2>
   <div class="well-meta">
     <span><strong>Name:</strong> 1771</span>
-    <span><strong>Basin:</strong> Ogallala Panhandle</span>
+    <span><strong>Aquifer:</strong> N/A</span>
     <span><strong>County:</strong> Texas</span>
   </div>
   <div class="page-layout">
@@ -138,16 +94,6 @@
       <div class="chart-container">
         <canvas id="hydrograph"></canvas>
       </div>
-
-      <div class="slider-wrap">
-        <div class="slider-header">
-          <label>Timestamp: <span id="sliderLabel">Full Record</span></label>
-          <button class="btn" onclick="resetSlider()">Reset</button>
-        </div>
-        <div id="timeSlider"></div>
-        <div class="slider-hint">Drag handles to zoom &bull; Double-click to reset</div>
-      </div>
-
       <div style="margin-top:12px;">
         <button class="btn" onclick="saveChart()">&#8681; Save Graph</button>
       </div>
@@ -222,18 +168,15 @@
       </table>
     </div>
   </div>
-
   <script>
     var allDates   = ["02/27/1966", "01/29/1967", "01/16/1968", "01/14/1969", "01/13/1970", "01/14/1971", "01/20/1972", "01/24/1973", "01/16/1974", "01/21/1975", "01/13/1976", "01/13/1977", "01/16/1978", "01/16/1979", "01/09/1980", "01/07/1981", "01/21/1982", "01/10/1983", "01/10/1984", "01/08/1985", "01/15/1986", "01/06/1987", "01/05/1988", "01/04/1989", "01/09/1990", "01/21/1991", "01/15/1992", "04/13/1993", "01/11/1994", "01/10/1995", "01/22/1996", "03/03/1997", "01/28/1998", "01/05/1999", "01/04/2000", "01/09/2001", "01/08/2002", "01/17/2003", "01/05/2004", "01/10/2005", "01/05/2006", "03/05/2007", "01/17/2008", "01/21/2009", "01/19/2010", "01/05/2011", "01/12/2012", "01/09/2013", "01/07/2014", "01/06/2015", "01/06/2016", "01/11/2017", "01/10/2018", "01/09/2019", "01/07/2020", "03/09/2021", "01/04/2022", "01/18/2023", "01/03/2024", "01/07/2025"];
     var allLevels  = [210.4, 217.2, 226.1, 238.5, 238.89, 248.87, 243.88, 266.74, 267.8, 273.8, 273.84, 273.84, 285.94, 286.02, 283.22, 281.41, 282.98, 282.98, 280.57, 280.3, 280.25, 295.51, 301, 287.44, 268.8, 277.8, 299.8, 280.4, 291.13, 287.9, 289.9, 286.8, 293.36, 294.72, 295.59, 273.59, 295.56, 297.42, 295.87, 296.2, 296.77, 296.29, 299.29, 304.1, 306.87, 308.81, 317.81, 323.04, 329.05, 334.6, 334.7, 332.36, 339.72, 343.46, 345.12, 346.4, 349.59, 348.67, 354.8, 358.2];
     var wellID     = "1771";
     var wellName   = "1771";
-    var basin      = "Ogallala Panhandle";
+    var aquifer    = "N/A";
     var county     = "Texas";
-    var nRec       = 60;
-    var currentPeriodLabel = "Full Record";
+    var currentPeriodLabel = "Period of Record";
 
-    // ---- Chart first ----
     var ctx = document.getElementById("hydrograph").getContext("2d");
     var chart = new Chart(ctx, {
       type: "line",
@@ -253,7 +196,7 @@
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        animation: { duration: 200 },
+        animation: { duration: 300 },
         onClick: function(evt, elements) {
           if (!elements || elements.length === 0) return;
           var visibleLabel = chart.data.labels[elements[0].index];
@@ -277,40 +220,6 @@
       }
     });
 
-    // ---- noUiSlider (after chart is ready) ----
-    var sliderEl = document.getElementById("timeSlider");
-    noUiSlider.create(sliderEl, {
-      start: [0, nRec - 1],
-      step: 1,
-      connect: true,
-      range: { min: 0, max: nRec - 1 },
-      tooltips: [
-        { to: function(v) { return allDates[Math.round(v)]; } },
-        { to: function(v) { return allDates[Math.round(v)]; } }
-      ]
-    });
-
-    sliderEl.noUiSlider.on("slide", function(values) {
-      var s = Math.round(parseFloat(values[0]));
-      var e = Math.round(parseFloat(values[1]));
-      currentPeriodLabel = allDates[s] + " to " + allDates[e];
-      document.getElementById("sliderLabel").textContent = currentPeriodLabel;
-      chart.data.labels = allDates.slice(s, e + 1);
-      chart.data.datasets[0].data = allLevels.slice(s, e + 1);
-      chart.update();
-    });
-
-    function resetSlider() {
-      sliderEl.noUiSlider.set([0, nRec - 1]);
-      currentPeriodLabel = "Full Record";
-      document.getElementById("sliderLabel").textContent = currentPeriodLabel;
-      chart.data.labels = allDates.slice();
-      chart.data.datasets[0].data = allLevels.slice();
-      chart.update();
-    }
-
-    sliderEl.addEventListener("dblclick", function() { resetSlider(); });
-
     function clearHighlight() {
       document.querySelectorAll("tr.highlighted").forEach(function(r) { r.classList.remove("highlighted"); });
     }
@@ -329,7 +238,7 @@
         var metaY = ruleY + 20;
         c.fillStyle = "#007BC2"; c.font = "bold 20px Arial"; c.fillText("Well ID: " + wellID, padding, metaY);
         c.fillStyle = "#333333"; c.font = "14px Arial";
-        c.fillText("Name: " + wellName + "     Basin: " + basin + "     County: " + county, padding, metaY + 24);
+        c.fillText("Name: " + wellName + "     Aquifer: " + aquifer + "     County: " + county, padding, metaY + 24);
         c.fillText("Time Period: " + currentPeriodLabel, padding, metaY + 48);
         c.drawImage(document.getElementById("hydrograph"), padding, ruleY + metaH + 4, totalW - padding * 2, chartH);
         var link = document.createElement("a");

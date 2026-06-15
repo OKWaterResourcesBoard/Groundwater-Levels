@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Well 127559 - OWRB GMAP</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -67,48 +65,6 @@
     }
     .main-content { flex: 1; min-width: 0; }
     .chart-container { position: relative; height: 380px; margin-top: 6px; }
-
-    /* noUiSlider overrides to match OWRB colors */
-    .slider-wrap { margin: 16px 0 10px 0; }
-    .slider-header {
-      display: flex; align-items: center;
-      justify-content: space-between; margin-bottom: 10px;
-    }
-    .slider-header label { font-weight: bold; color: #007BC2; font-size: 13px; }
-    #timeSlider { margin: 0 4px; }
-    .noUi-target {
-      background: #ccd8e4;
-      border-radius: 3px;
-      border: none;
-      box-shadow: none;
-      height: 6px;
-    }
-    .noUi-connect { background: #007BC2; }
-    .noUi-handle {
-      width: 18px !important;
-      height: 28px !important;
-      top: -11px !important;
-      right: -9px !important;
-      background: #007BC2;
-      border: 2px solid #fff;
-      border-radius: 3px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      cursor: grab;
-    }
-    .noUi-handle:active { cursor: grabbing; }
-    .noUi-handle::before,
-    .noUi-handle::after {
-      display: none;
-    }
-    .noUi-tooltip {
-      background: #007BC2;
-      color: #fff;
-      border: none;
-      border-radius: 3px;
-      font-size: 11px;
-      padding: 2px 6px;
-    }
-    .slider-hint { font-size: 11px; color: #aaa; margin-top: 6px; }
 </style>
 </head>
 <body>
@@ -119,7 +75,7 @@
   <h2>Well ID: 127559</h2>
   <div class="well-meta">
     <span><strong>Name:</strong> Spencer Mesonet</span>
-    <span><strong>Basin:</strong> Garber-Wellington</span>
+    <span><strong>Aquifer:</strong> N/A</span>
     <span><strong>County:</strong> Oklahoma</span>
   </div>
   <div class="page-layout">
@@ -138,16 +94,6 @@
       <div class="chart-container">
         <canvas id="hydrograph"></canvas>
       </div>
-
-      <div class="slider-wrap">
-        <div class="slider-header">
-          <label>Timestamp: <span id="sliderLabel">Full Record</span></label>
-          <button class="btn" onclick="resetSlider()">Reset</button>
-        </div>
-        <div id="timeSlider"></div>
-        <div class="slider-hint">Drag handles to zoom &bull; Double-click to reset</div>
-      </div>
-
       <div style="margin-top:12px;">
         <button class="btn" onclick="saveChart()">&#8681; Save Graph</button>
       </div>
@@ -168,18 +114,15 @@
       </table>
     </div>
   </div>
-
   <script>
     var allDates   = ["05/31/2018", "09/25/2018", "12/18/2018", "09/10/2019", "01/31/2020", "02/26/2021"];
     var allLevels  = [54.725, 55.3, 55.435, 52.36, 51.9, 49.19];
     var wellID     = "127559";
     var wellName   = "Spencer Mesonet";
-    var basin      = "Garber-Wellington";
+    var aquifer    = "N/A";
     var county     = "Oklahoma";
-    var nRec       = 6;
-    var currentPeriodLabel = "Full Record";
+    var currentPeriodLabel = "Period of Record";
 
-    // ---- Chart first ----
     var ctx = document.getElementById("hydrograph").getContext("2d");
     var chart = new Chart(ctx, {
       type: "line",
@@ -199,7 +142,7 @@
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        animation: { duration: 200 },
+        animation: { duration: 300 },
         onClick: function(evt, elements) {
           if (!elements || elements.length === 0) return;
           var visibleLabel = chart.data.labels[elements[0].index];
@@ -223,40 +166,6 @@
       }
     });
 
-    // ---- noUiSlider (after chart is ready) ----
-    var sliderEl = document.getElementById("timeSlider");
-    noUiSlider.create(sliderEl, {
-      start: [0, nRec - 1],
-      step: 1,
-      connect: true,
-      range: { min: 0, max: nRec - 1 },
-      tooltips: [
-        { to: function(v) { return allDates[Math.round(v)]; } },
-        { to: function(v) { return allDates[Math.round(v)]; } }
-      ]
-    });
-
-    sliderEl.noUiSlider.on("slide", function(values) {
-      var s = Math.round(parseFloat(values[0]));
-      var e = Math.round(parseFloat(values[1]));
-      currentPeriodLabel = allDates[s] + " to " + allDates[e];
-      document.getElementById("sliderLabel").textContent = currentPeriodLabel;
-      chart.data.labels = allDates.slice(s, e + 1);
-      chart.data.datasets[0].data = allLevels.slice(s, e + 1);
-      chart.update();
-    });
-
-    function resetSlider() {
-      sliderEl.noUiSlider.set([0, nRec - 1]);
-      currentPeriodLabel = "Full Record";
-      document.getElementById("sliderLabel").textContent = currentPeriodLabel;
-      chart.data.labels = allDates.slice();
-      chart.data.datasets[0].data = allLevels.slice();
-      chart.update();
-    }
-
-    sliderEl.addEventListener("dblclick", function() { resetSlider(); });
-
     function clearHighlight() {
       document.querySelectorAll("tr.highlighted").forEach(function(r) { r.classList.remove("highlighted"); });
     }
@@ -275,7 +184,7 @@
         var metaY = ruleY + 20;
         c.fillStyle = "#007BC2"; c.font = "bold 20px Arial"; c.fillText("Well ID: " + wellID, padding, metaY);
         c.fillStyle = "#333333"; c.font = "14px Arial";
-        c.fillText("Name: " + wellName + "     Basin: " + basin + "     County: " + county, padding, metaY + 24);
+        c.fillText("Name: " + wellName + "     Aquifer: " + aquifer + "     County: " + county, padding, metaY + 24);
         c.fillText("Time Period: " + currentPeriodLabel, padding, metaY + 48);
         c.drawImage(document.getElementById("hydrograph"), padding, ruleY + metaH + 4, totalW - padding * 2, chartH);
         var link = document.createElement("a");
