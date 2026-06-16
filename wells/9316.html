@@ -106,6 +106,7 @@
     <span><strong>Name:</strong> 9316</span>
     <span><strong>Aquifer:</strong> Unknown</span>
     <span><strong>County:</strong> Beaver</span>
+    <span><strong>Monitoring Status:</strong> No Longer Monitored</span>
   </div>
   <div class="page-layout">
     <div class="sidebar">
@@ -163,6 +164,7 @@
     var wellName   = "9316";
     var aquifer    = "Unknown";
     var county     = "Beaver";
+    var mstatus    = "No Longer Monitored";
     var currentPeriodLabel = "Full Record";
     var nRec = allDates.length;
 
@@ -262,8 +264,9 @@
         c.fillStyle = "#007BC2"; c.font = "bold 20px Arial"; c.fillText("Well ID: " + wellID, padding, metaY);
         c.fillStyle = "#333333"; c.font = "14px Arial";
         c.fillText("Name: " + wellName + "     Aquifer: " + aquifer + "     County: " + county, padding, metaY + 24);
-        c.fillText("Time Period: " + currentPeriodLabel, padding, metaY + 48);
-        c.drawImage(document.getElementById("hydrograph"), padding, ruleY + metaH + 4, totalW - padding * 2, chartH);
+        c.fillText("Monitoring Status: " + mstatus, padding, metaY + 44);
+        c.fillText("Time Period: " + currentPeriodLabel, padding, metaY + 64);
+        c.drawImage(document.getElementById("hydrograph"), padding, ruleY + metaH + 24, totalW - padding * 2, chartH);
         var link = document.createElement("a");
         link.download = "Well_" + wellID + "_Hydrograph.png";
         link.href = out.toDataURL("image/png"); link.click();
