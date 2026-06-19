@@ -136,7 +136,6 @@
         <button class="btn" onclick="saveChart()">&#8681; Save Graph</button>
       </div>
       <p class="note">NOTE: See Data Table Below</p>
-      <button class="btn" onclick="clearHighlight()">Clear Selection</button>
       <table>
         <thead>
           <tr><th>Date</th><th>Depth to Water</th><th>Units</th></tr>
@@ -283,10 +282,6 @@
     }
 
     sliderEl.addEventListener("dblclick", function() { resetSlider(); });
-
-    function clearHighlight() {
-      document.querySelectorAll("tr.highlighted").forEach(function(r) { r.classList.remove("highlighted"); });
-    }
 
     function saveChart() {
       var padding = 30, logoH = 60, metaH = 75, chartH = 420, totalW = 1100;
