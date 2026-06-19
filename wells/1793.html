@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Well 1793 - OWRB GMAP</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 40px 20px;
+      color: #333;
+    }
+    .owrb-header {
+      padding: 12px 0 10px 0;
+      border-bottom: 3px solid #007BC2;
+      margin-bottom: 18px;
+    }
+    .owrb-header img { height: 60px; width: auto; }
+    h1, h2 { color: #007BC2; margin-top: 8px; }
+    a { color: #007BC2; }
+    .back-link { display: inline-block; margin-bottom: 10px; font-size: 14px; }
+    .well-meta {
+      font-size: 14px; color: #555;
+      margin: 4px 0 14px 0; line-height: 1.9;
+    }
+    .well-meta span { margin-right: 24px; white-space: nowrap; }
+    .well-meta strong { color: #007BC2; }
+    .note { text-align: center; font-weight: bold; margin: 24px 0 8px 0; font-size: 15px; }
+    .btn {
+      display: inline-block; margin-bottom: 10px; margin-right: 8px;
+      padding: 5px 14px; font-size: 13px; background-color: #f0f0f0;
+      border: 1px solid #ccc; border-radius: 4px; cursor: pointer; color: #333;
+    }
+    .btn:hover { background-color: #e0e0e0; }
+    table { border-collapse: collapse; width: 100%; margin-top: 4px; table-layout: fixed; }
+    th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; width: 33.33%; }
+    th { background-color: #007BC2; color: white; }
+    tr:nth-child(even) { background-color: #f2f2f2; }
+    tr.highlighted { background-color: #fff3a3 !important; }
+    .page-layout { display: flex; gap: 24px; align-items: flex-start; }
+    .sidebar {
+      min-width: 165px; max-width: 185px;
+      background: #f5f7fa; border: 1px solid #d0d8e4;
+      border-radius: 6px; padding: 14px 12px; font-size: 13px;
+    }
+    .sidebar h3 {
+      color: #007BC2; font-size: 12px; margin: 0 0 10px 0;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      border-bottom: 1px solid #d0d8e4; padding-bottom: 6px; font-weight: bold;
+    }
+    .sidebar a {
+      display: block; padding: 5px 0; color: #007BC2;
+      text-decoration: none; border-bottom: 1px solid #e8ecf0; font-size: 13px;
+    }
+    .sidebar a:last-of-type { border-bottom: none; }
+    .sidebar a:hover { color: #005a8e; text-decoration: underline; }
+    .map-section { margin-top: 14px; }
+    .map-section h3 {
+      color: #007BC2; font-size: 12px; margin: 0 0 6px 0;
+      text-transform: uppercase; letter-spacing: 0.05em; font-weight: bold;
+    }
+    .main-content { flex: 1; min-width: 0; }
+    .chart-container { position: relative; height: 380px; margin-top: 6px; }
+
+    /* noUiSlider overrides */
+    .slider-wrap { margin: 16px 0 10px 0; }
+    .slider-header {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-bottom: 10px;
+    }
+    .slider-header label { font-weight: bold; color: #007BC2; font-size: 13px; }
+    #timeSlider { margin: 0 4px; }
+    .noUi-target {
+      background: #ccd8e4; border-radius: 3px;
+      border: none; box-shadow: none; height: 6px;
+    }
+    .noUi-connect { background: #007BC2; }
+    .noUi-handle {
+      width: 18px !important; height: 28px !important;
+      top: -11px !important; right: -9px !important;
+      background: #007BC2; border: 2px solid #fff;
+      border-radius: 3px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); cursor: grab;
+    }
+    .noUi-handle:active { cursor: grabbing; }
+    .noUi-handle::before, .noUi-handle::after { display: none; }
+    .noUi-tooltip {
+      background: #007BC2; color: #fff; border: none;
+      border-radius: 3px; font-size: 11px; padding: 2px 6px;
+    }
+    .slider-hint { font-size: 11px; color: #aaa; margin-top: 6px; }
+</style>
+</head>
+<body>
+  <div class="owrb-header">
+    <img src="../Branded-Logo-OWRB.svg" alt="Oklahoma Water Resources Board">
+  </div>
+  <a class="back-link" href="../index.html">&larr; Back to Well Index</a>
+  <h2>Well ID: 1793</h2>
+  <div class="well-meta">
+    <span><strong>Name:</strong> 1793</span>
+    <span><strong>Aquifer:</strong> Ogallala Panhandle</span>
+    <span><strong>County:</strong> Texas</span>
+    <span><strong>Monitoring Status:</strong> Never Programmatically Monitored</span>
+  </div>
+  <div class="page-layout">
+    <div class="sidebar">
+      <h3>Links</h3>
+      <a href="https://oklahoma.gov/owrb.html" target="_blank">OWRB Home</a>
+      <a href="https://www.owrb.ok.gov/wd/search/search.php" target="_blank">Well Log Search</a>
+      <a href="https://oklahoma.gov/owrb/wells-and-licensing.html" target="_blank">Wells &amp; Licensing</a>
+      <a href="https://oklahoma.gov/owrb/data-and-maps/water-monitoring-and-data.html" target="_blank">Water Monitoring &amp; Data</a>
+      <div class="map-section">
+        <h3>Well Location</h3>
+        <svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg" style="width:100%;border:1px solid #d0d8e4;border-radius:4px;background:#f9fbfd;"><path d="M 0,0 L 68,0 L 68,0.2 L 116.7,0.1 L 163.4,0 L 200,0 L 200,43 L 198.8,89.4 L 175.1,83.2 L 149.4,83.9 L 135.4,86.8 L 123.7,85.1 L 116.7,82.5 L 105.1,84.2 L 93.4,84.2 L 81.7,86.4 L 70.1,84.2 L 70.1,13.3 L 0,13.3 L 0,0 Z" fill="#dce8f5" stroke="#007BC2" stroke-width="1.2" stroke-linejoin="round"/><circle cx="27.8" cy="0.9" r="3" fill="#B5491A" stroke="#fff" stroke-width="1"/></svg>
+      </div>
+    </div>
+    <div class="main-content">
+      <div style="text-align:center; padding:64px 20px; background:#f5f7fa; border:1px solid #d0d8e4; border-radius:6px; margin-top:6px;">
+        <div style="font-size:30px; font-weight:bold; color:#B5491A; letter-spacing:0.04em;">No Data</div>
+        <p style="color:#777; font-size:14px; margin-top:10px;">No water-level measurements are available for this well.</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
