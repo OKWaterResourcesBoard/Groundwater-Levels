@@ -42,6 +42,8 @@
     .btn:hover { background-color: #e0e0e0; }
     table { border-collapse: collapse; width: 100%; margin-top: 4px; table-layout: fixed; }
     th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; width: 50%; }
+    .table-pager { margin-top: 10px; display: flex; align-items: center; gap: 12px; }
+    #pageInfo { font-size: 13px; color: #555; }
     th { background-color: #007BC2; color: white; }
     tr:nth-child(even) { background-color: #f2f2f2; }
     tr.highlighted { background-color: #fff3a3 !important; }
@@ -145,7 +147,7 @@
         <button class="btn" onclick="exportTable()">&#8681; Export Table</button>
       </div>
       <p class="note">Data Table</p>
-      <table>
+      <table id="dataTable">
         <thead>
           <tr><th>Date</th><th>Depth to Water (ft)</th></tr>
         </thead>
@@ -169,6 +171,11 @@
       <tr id="row-17"><td>01/21/2025</td><td>40.48</td></tr>
         </tbody>
       </table>
+      <div class="table-pager">
+        <button class="btn" onclick="tablePage(-1)">&#8592; Prev</button>
+        <span id="pageInfo"></span>
+        <button class="btn" onclick="tablePage(1)">Next &#8594;</button>
+      </div>
     </div>
   </div>
   <div id="mapModal" class="map-modal">
@@ -197,10 +204,19 @@
             .addTo(m).bindPopup(wellLabel);
         }
       }
+      function addBoundary(m) {
+        fetch("../ok_boundary.geojson")
+          .then(function(r) { return r.json(); })
+          .then(function(gj) {
+            L.geoJSON(gj, { interactive: false, style: { color: "#007BC2", weight: 2.5, opacity: 0.9, fill: false } }).addTo(m);
+          })
+          .catch(function() {});
+      }
 
       var okBounds = [[33.6, -103.1], [37.05, -94.4]];
       var miniMap = L.map("wellMap", { scrollWheelZoom: false });
       addTiles(miniMap);
+      addBoundary(miniMap);
       addMarker(miniMap);
       miniMap.fitBounds(okBounds);
       setTimeout(function() { miniMap.invalidateSize(); miniMap.fitBounds(okBounds); }, 150);
@@ -213,6 +229,7 @@
         if (!bigMap) {
           bigMap = L.map("wellMapLarge");
           addTiles(bigMap);
+          addBoundary(bigMap);
           addMarker(bigMap);
           if (hasMarker) { bigMap.setView(center, 12); } else { bigMap.fitBounds(okBounds); }
         }
@@ -234,6 +251,24 @@
     var mstatus    = "Actively Monitored";
     var currentPeriodLabel = "Full Record";
     var nRec = allDates.length;
+
+    // Data table pagination
+    var rowsPerPage = 15;
+    var tableRows = Array.prototype.slice.call(document.querySelectorAll("#dataTable tbody tr"));
+    var totalPages = Math.max(1, Math.ceil(tableRows.length / rowsPerPage));
+    var currentPage = 1;
+    function renderTablePage() {
+      var start = (currentPage - 1) * rowsPerPage, end = start + rowsPerPage;
+      for (var i = 0; i < tableRows.length; i++) {
+        tableRows[i].style.display = (i >= start && i < end) ? "" : "none";
+      }
+      var info = document.getElementById("pageInfo");
+      if (info) info.textContent = "Page " + currentPage + " of " + totalPages;
+    }
+    function tablePage(d) {
+      currentPage = Math.min(totalPages, Math.max(1, currentPage + d));
+      renderTablePage();
+    }
 
     var ctx = document.getElementById("hydrograph").getContext("2d");
     var chart = new Chart(ctx, {
@@ -259,12 +294,15 @@
           if (!elements || elements.length === 0) return;
           var visibleLabel = chart.data.labels[elements[0].index];
           document.querySelectorAll("tr.highlighted").forEach(function(r) { r.classList.remove("highlighted"); });
-          document.querySelectorAll("tbody tr").forEach(function(row) {
-            if (row.cells[0].textContent.trim() === visibleLabel) {
-              row.classList.add("highlighted");
-              row.scrollIntoView({ behavior: "smooth", block: "center" });
+          for (var i = 0; i < tableRows.length; i++) {
+            if (tableRows[i].cells[0].textContent.trim() === visibleLabel) {
+              currentPage = Math.floor(i / rowsPerPage) + 1;
+              renderTablePage();
+              tableRows[i].classList.add("highlighted");
+              tableRows[i].scrollIntoView({ behavior: "smooth", block: "center" });
+              break;
             }
-          });
+          }
         },
         scales: {
           y: {
@@ -366,6 +404,8 @@
       logoImg.onerror = function() { drawContent(null); };
       logoImg.src = "../Branded-Logo-OWRB.svg?" + new Date().getTime();
     }
+
+    renderTablePage();
   </script>
 </body>
 </html>
