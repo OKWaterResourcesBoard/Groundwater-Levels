@@ -7,6 +7,8 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -39,7 +41,7 @@
     }
     .btn:hover { background-color: #e0e0e0; }
     table { border-collapse: collapse; width: 100%; margin-top: 4px; table-layout: fixed; }
-    th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; width: 33.33%; }
+    th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; width: 50%; }
     th { background-color: #007BC2; color: white; }
     tr:nth-child(even) { background-color: #f2f2f2; }
     tr.highlighted { background-color: #fff3a3 !important; }
@@ -61,6 +63,12 @@
     .sidebar a:last-of-type { border-bottom: none; }
     .sidebar a:hover { color: #005a8e; text-decoration: underline; }
     .map-section { margin-top: 14px; }
+    .mini-map { height: 220px; width: 100%; border: 1px solid #ccc; border-radius: 6px; }
+    .map-expand-btn { margin-top: 6px; width: 100%; }
+    .map-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 1000; align-items: center; justify-content: center; }
+    .map-modal-content { position: relative; width: 85vw; height: 82vh; background: #fff; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); overflow: hidden; }
+    .map-modal-map { width: 100%; height: 100%; }
+    .map-modal-close { position: absolute; top: 8px; right: 10px; z-index: 1001; background: #fff; border: 1px solid #ccc; border-radius: 4px; font-size: 20px; line-height: 1; width: 32px; height: 32px; cursor: pointer; }
     .map-section h3 {
       color: #007BC2; font-size: 12px; margin: 0 0 6px 0;
       text-transform: uppercase; letter-spacing: 0.05em; font-weight: bold;
@@ -103,7 +111,6 @@
   <a class="back-link" href="../index.html">&larr; Back to Well Index</a>
   <h2>Well ID: 27665</h2>
   <div class="well-meta">
-    <span><strong>Name:</strong> MM27665</span>
     <span><strong>Aquifer:</strong> Rush Springs</span>
     <span><strong>County:</strong> Dewey</span>
     <span><strong>Monitoring Status:</strong> Actively Monitored</span>
@@ -117,7 +124,8 @@
       <a href="https://oklahoma.gov/owrb/data-and-maps/water-monitoring-and-data.html" target="_blank">Water Monitoring &amp; Data</a>
       <div class="map-section">
         <h3>Well Location</h3>
-        <svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg" style="width:100%;border:1px solid #d0d8e4;border-radius:4px;background:#f9fbfd;"><path d="M 0,0 L 68,0 L 68,0.2 L 116.7,0.1 L 163.4,0 L 200,0 L 200,43 L 198.8,89.4 L 175.1,83.2 L 149.4,83.9 L 135.4,86.8 L 123.7,85.1 L 116.7,82.5 L 105.1,84.2 L 93.4,84.2 L 81.7,86.4 L 70.1,84.2 L 70.1,13.3 L 0,13.3 L 0,0 Z" fill="#dce8f5" stroke="#007BC2" stroke-width="1.2" stroke-linejoin="round"/><circle cx="97.8" cy="25.2" r="3" fill="#B5491A" stroke="#fff" stroke-width="1"/></svg>
+        <div id="wellMap" class="mini-map"></div>
+        <button class="btn map-expand-btn" onclick="openMapModal()">&#10530; Expand map</button>
       </div>
     </div>
     <div class="main-content">
@@ -134,67 +142,121 @@
       </div>
       <div style="margin-top:12px;">
         <button class="btn" onclick="saveChart()">&#8681; Save Graph</button>
+        <button class="btn" onclick="exportTable()">&#8681; Export Table</button>
       </div>
-      <p class="note">NOTE: See Data Table Below</p>
+      <p class="note">Data Table</p>
       <table>
         <thead>
-          <tr><th>Date</th><th>Depth to Water</th><th>Units</th></tr>
+          <tr><th>Date</th><th>Depth to Water (ft)</th></tr>
         </thead>
         <tbody>
-      <tr id="row-1"><td>01/17/1989</td><td>44.7</td><td>ft</td></tr>
-      <tr id="row-2"><td>01/25/1990</td><td>44.7</td><td>ft</td></tr>
-      <tr id="row-3"><td>05/16/1991</td><td>44.33</td><td>ft</td></tr>
-      <tr id="row-4"><td>01/17/1992</td><td>44.53</td><td>ft</td></tr>
-      <tr id="row-5"><td>03/14/1994</td><td>44.99</td><td>ft</td></tr>
-      <tr id="row-6"><td>03/27/1996</td><td>45.46</td><td>ft</td></tr>
-      <tr id="row-7"><td>02/04/1997</td><td>39.65</td><td>ft</td></tr>
-      <tr id="row-8"><td>02/25/1998</td><td>38.3</td><td>ft</td></tr>
-      <tr id="row-9"><td>01/21/1999</td><td>35.85</td><td>ft</td></tr>
-      <tr id="row-10"><td>02/09/2000</td><td>35.68</td><td>ft</td></tr>
-      <tr id="row-11"><td>03/20/2001</td><td>36.57</td><td>ft</td></tr>
-      <tr id="row-12"><td>03/20/2002</td><td>36.92</td><td>ft</td></tr>
-      <tr id="row-13"><td>02/03/2003</td><td>37.6</td><td>ft</td></tr>
-      <tr id="row-14"><td>03/12/2004</td><td>38.5</td><td>ft</td></tr>
-      <tr id="row-15"><td>01/27/2005</td><td>37.43</td><td>ft</td></tr>
-      <tr id="row-16"><td>01/19/2006</td><td>37.3</td><td>ft</td></tr>
-      <tr id="row-17"><td>02/06/2007</td><td>38.27</td><td>ft</td></tr>
-      <tr id="row-18"><td>01/18/2008</td><td>36.6</td><td>ft</td></tr>
-      <tr id="row-19"><td>01/07/2009</td><td>34.9</td><td>ft</td></tr>
-      <tr id="row-20"><td>01/19/2010</td><td>35.4</td><td>ft</td></tr>
-      <tr id="row-21"><td>01/07/2011</td><td>35.8</td><td>ft</td></tr>
-      <tr id="row-22"><td>01/11/2012</td><td>36.85</td><td>ft</td></tr>
-      <tr id="row-23"><td>01/16/2013</td><td>37.51</td><td>ft</td></tr>
-      <tr id="row-24"><td>10/01/2013</td><td>37.8</td><td>ft</td></tr>
-      <tr id="row-25"><td>01/28/2014</td><td>38.05</td><td>ft</td></tr>
-      <tr id="row-26"><td>05/13/2014</td><td>38.43</td><td>ft</td></tr>
-      <tr id="row-27"><td>09/10/2014</td><td>38.28</td><td>ft</td></tr>
-      <tr id="row-28"><td>01/05/2015</td><td>38.5</td><td>ft</td></tr>
-      <tr id="row-29"><td>05/11/2015</td><td>38.44</td><td>ft</td></tr>
-      <tr id="row-30"><td>09/30/2015</td><td>36.38</td><td>ft</td></tr>
-      <tr id="row-31"><td>01/19/2016</td><td>36.22</td><td>ft</td></tr>
-      <tr id="row-32"><td>05/04/2016</td><td>36.05</td><td>ft</td></tr>
-      <tr id="row-33"><td>09/26/2016</td><td>35.74</td><td>ft</td></tr>
-      <tr id="row-34"><td>01/03/2017</td><td>33.7</td><td>ft</td></tr>
-      <tr id="row-35"><td>04/26/2017</td><td>35.6</td><td>ft</td></tr>
-      <tr id="row-36"><td>09/13/2017</td><td>34.96</td><td>ft</td></tr>
-      <tr id="row-37"><td>01/18/2018</td><td>35.06</td><td>ft</td></tr>
-      <tr id="row-38"><td>05/07/2018</td><td>35.5</td><td>ft</td></tr>
-      <tr id="row-39"><td>09/04/2018</td><td>35.8</td><td>ft</td></tr>
-      <tr id="row-40"><td>01/09/2019</td><td>36.04</td><td>ft</td></tr>
-      <tr id="row-41"><td>04/24/2019</td><td>35.95</td><td>ft</td></tr>
-      <tr id="row-42"><td>08/26/2019</td><td>33.95</td><td>ft</td></tr>
-      <tr id="row-43"><td>01/14/2020</td><td>34.14</td><td>ft</td></tr>
-      <tr id="row-44"><td>09/08/2020</td><td>34.88</td><td>ft</td></tr>
-      <tr id="row-45"><td>02/22/2021</td><td>35.3</td><td>ft</td></tr>
-      <tr id="row-46"><td>01/12/2022</td><td>34.85</td><td>ft</td></tr>
-      <tr id="row-47"><td>09/20/2022</td><td>35.71</td><td>ft</td></tr>
-      <tr id="row-48"><td>01/10/2023</td><td>35.88</td><td>ft</td></tr>
-      <tr id="row-49"><td>01/09/2024</td><td>35.65</td><td>ft</td></tr>
-      <tr id="row-50"><td>01/29/2025</td><td>35.58</td><td>ft</td></tr>
+      <tr id="row-1"><td>01/17/1989</td><td>44.7</td></tr>
+      <tr id="row-2"><td>01/25/1990</td><td>44.7</td></tr>
+      <tr id="row-3"><td>05/16/1991</td><td>44.33</td></tr>
+      <tr id="row-4"><td>01/17/1992</td><td>44.53</td></tr>
+      <tr id="row-5"><td>03/14/1994</td><td>44.99</td></tr>
+      <tr id="row-6"><td>03/27/1996</td><td>45.46</td></tr>
+      <tr id="row-7"><td>02/04/1997</td><td>39.65</td></tr>
+      <tr id="row-8"><td>02/25/1998</td><td>38.3</td></tr>
+      <tr id="row-9"><td>01/21/1999</td><td>35.85</td></tr>
+      <tr id="row-10"><td>02/09/2000</td><td>35.68</td></tr>
+      <tr id="row-11"><td>03/20/2001</td><td>36.57</td></tr>
+      <tr id="row-12"><td>03/20/2002</td><td>36.92</td></tr>
+      <tr id="row-13"><td>02/03/2003</td><td>37.6</td></tr>
+      <tr id="row-14"><td>03/12/2004</td><td>38.5</td></tr>
+      <tr id="row-15"><td>01/27/2005</td><td>37.43</td></tr>
+      <tr id="row-16"><td>01/19/2006</td><td>37.3</td></tr>
+      <tr id="row-17"><td>02/06/2007</td><td>38.27</td></tr>
+      <tr id="row-18"><td>01/18/2008</td><td>36.6</td></tr>
+      <tr id="row-19"><td>01/07/2009</td><td>34.9</td></tr>
+      <tr id="row-20"><td>01/19/2010</td><td>35.4</td></tr>
+      <tr id="row-21"><td>01/07/2011</td><td>35.8</td></tr>
+      <tr id="row-22"><td>01/11/2012</td><td>36.85</td></tr>
+      <tr id="row-23"><td>01/16/2013</td><td>37.51</td></tr>
+      <tr id="row-24"><td>10/01/2013</td><td>37.8</td></tr>
+      <tr id="row-25"><td>01/28/2014</td><td>38.05</td></tr>
+      <tr id="row-26"><td>05/13/2014</td><td>38.43</td></tr>
+      <tr id="row-27"><td>09/10/2014</td><td>38.28</td></tr>
+      <tr id="row-28"><td>01/05/2015</td><td>38.5</td></tr>
+      <tr id="row-29"><td>05/11/2015</td><td>38.44</td></tr>
+      <tr id="row-30"><td>09/30/2015</td><td>36.38</td></tr>
+      <tr id="row-31"><td>01/19/2016</td><td>36.22</td></tr>
+      <tr id="row-32"><td>05/04/2016</td><td>36.05</td></tr>
+      <tr id="row-33"><td>09/26/2016</td><td>35.74</td></tr>
+      <tr id="row-34"><td>01/03/2017</td><td>33.7</td></tr>
+      <tr id="row-35"><td>04/26/2017</td><td>35.6</td></tr>
+      <tr id="row-36"><td>09/13/2017</td><td>34.96</td></tr>
+      <tr id="row-37"><td>01/18/2018</td><td>35.06</td></tr>
+      <tr id="row-38"><td>05/07/2018</td><td>35.5</td></tr>
+      <tr id="row-39"><td>09/04/2018</td><td>35.8</td></tr>
+      <tr id="row-40"><td>01/09/2019</td><td>36.04</td></tr>
+      <tr id="row-41"><td>04/24/2019</td><td>35.95</td></tr>
+      <tr id="row-42"><td>08/26/2019</td><td>33.95</td></tr>
+      <tr id="row-43"><td>01/14/2020</td><td>34.14</td></tr>
+      <tr id="row-44"><td>09/08/2020</td><td>34.88</td></tr>
+      <tr id="row-45"><td>02/22/2021</td><td>35.3</td></tr>
+      <tr id="row-46"><td>01/12/2022</td><td>34.85</td></tr>
+      <tr id="row-47"><td>09/20/2022</td><td>35.71</td></tr>
+      <tr id="row-48"><td>01/10/2023</td><td>35.88</td></tr>
+      <tr id="row-49"><td>01/09/2024</td><td>35.65</td></tr>
+      <tr id="row-50"><td>01/29/2025</td><td>35.58</td></tr>
         </tbody>
       </table>
     </div>
   </div>
+  <div id="mapModal" class="map-modal">
+    <div class="map-modal-content">
+      <button class="map-modal-close" onclick="closeMapModal()" title="Close">&times;</button>
+      <div id="wellMapLarge" class="map-modal-map"></div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var center = [36.052049864, -98.811356873];
+      var zoom = 11;
+      var hasMarker = true;
+      var mLat = 36.052049864, mLon = -98.811356873;
+      var wellLabel = "Well 27665";
+
+      function addTiles(m) {
+        L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+          maxZoom: 19,
+          attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
+        }).addTo(m);
+      }
+      function addMarker(m) {
+        if (hasMarker) {
+          L.circleMarker([mLat, mLon], { radius: 7, color: "#B5491A", fillColor: "#B5491A", fillOpacity: 0.9, weight: 2 })
+            .addTo(m).bindPopup(wellLabel);
+        }
+      }
+
+      var okBounds = [[33.6, -103.1], [37.05, -94.4]];
+      var miniMap = L.map("wellMap", { scrollWheelZoom: false });
+      addTiles(miniMap);
+      addMarker(miniMap);
+      miniMap.fitBounds(okBounds);
+      setTimeout(function() { miniMap.invalidateSize(); miniMap.fitBounds(okBounds); }, 150);
+
+      var bigMap = null;
+      var modal = document.getElementById("mapModal");
+
+      window.openMapModal = function() {
+        modal.style.display = "flex";
+        if (!bigMap) {
+          bigMap = L.map("wellMapLarge");
+          addTiles(bigMap);
+          addMarker(bigMap);
+          if (hasMarker) { bigMap.setView(center, 12); } else { bigMap.fitBounds(okBounds); }
+        }
+        setTimeout(function() { bigMap.invalidateSize(); }, 100);
+      };
+      window.closeMapModal = function() { modal.style.display = "none"; };
+
+      modal.addEventListener("click", function(e) { if (e.target === modal) window.closeMapModal(); });
+      document.addEventListener("keydown", function(e) { if (e.key === "Escape") window.closeMapModal(); });
+    })();
+  </script>
   <script>
     var allDates   = ["01/17/1989", "01/25/1990", "05/16/1991", "01/17/1992", "03/14/1994", "03/27/1996", "02/04/1997", "02/25/1998", "01/21/1999", "02/09/2000", "03/20/2001", "03/20/2002", "02/03/2003", "03/12/2004", "01/27/2005", "01/19/2006", "02/06/2007", "01/18/2008", "01/07/2009", "01/19/2010", "01/07/2011", "01/11/2012", "01/16/2013", "10/01/2013", "01/28/2014", "05/13/2014", "09/10/2014", "01/05/2015", "05/11/2015", "09/30/2015", "01/19/2016", "05/04/2016", "09/26/2016", "01/03/2017", "04/26/2017", "09/13/2017", "01/18/2018", "05/07/2018", "09/04/2018", "01/09/2019", "04/24/2019", "08/26/2019", "01/14/2020", "09/08/2020", "02/22/2021", "01/12/2022", "09/20/2022", "01/10/2023", "01/09/2024", "01/29/2025"];
     var allLevels  = [44.7, 44.7, 44.33, 44.53, 44.99, 45.46, 39.65, 38.3, 35.85, 35.68, 36.57, 36.92, 37.6, 38.5, 37.43, 37.3, 38.27, 36.6, 34.9, 35.4, 35.8, 36.85, 37.51, 37.8, 38.05, 38.43, 38.28, 38.5, 38.44, 36.38, 36.22, 36.05, 35.74, 33.7, 35.6, 34.96, 35.06, 35.5, 35.8, 36.04, 35.95, 33.95, 34.14, 34.88, 35.3, 34.85, 35.71, 35.88, 35.65, 35.58];
@@ -238,12 +300,23 @@
           });
         },
         scales: {
-          y: { reverse: true, title: { display: true, text: "Depth to Water (ft)" } },
+          y: {
+            reverse: true,
+            title: { display: true, text: "Depth to Water (ft)" },
+            afterDataLimits: function(scale) {
+              var minSpan = 10;               // ft floor; set to 5 for a tighter minimum
+              if ((scale.max - scale.min) < minSpan) {
+                var mid = (scale.max + scale.min) / 2;
+                scale.min = mid - minSpan / 2;
+                scale.max = mid + minSpan / 2;
+              }
+            }
+          },
           x: { title: { display: true, text: "Date" }, ticks: { maxTicksLimit: 12, maxRotation: 45 } }
         },
         plugins: {
-          legend: { display: true },
-          title: { display: true, text: "Well ID(s) " + wellID + " - Depth to Water" },
+          legend: { display: false },
+          title: { display: true, text: "Well ID " + wellID + " - Depth to Water", font: { size: 18 } },
           tooltip: { callbacks: { label: function(ctx) { return "Depth to Water: " + ctx.parsed.y + " ft"; } } }
         }
       }
@@ -283,6 +356,21 @@
 
     sliderEl.addEventListener("dblclick", function() { resetSlider(); });
 
+    function exportTable() {
+      var rows = [];
+      rows.push("Well ID," + wellID);
+      rows.push("Date,Depth to Water (ft)");
+      for (var i = 0; i < allDates.length; i++) {
+        rows.push(allDates[i] + "," + allLevels[i]);
+      }
+      var blob = new Blob([rows.join(String.fromCharCode(10))], { type: "text/csv;charset=utf-8;" });
+      var link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "Well_" + wellID + "_data.csv";
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+
     function saveChart() {
       var padding = 30, logoH = 60, metaH = 75, chartH = 420, totalW = 1100;
       var totalH = padding + logoH + 12 + metaH + chartH + padding;
@@ -297,7 +385,7 @@
         var metaY = ruleY + 20;
         c.fillStyle = "#007BC2"; c.font = "bold 20px Arial"; c.fillText("Well ID: " + wellID, padding, metaY);
         c.fillStyle = "#333333"; c.font = "14px Arial";
-        c.fillText("Name: " + wellName + "     Aquifer: " + aquifer + "     County: " + county, padding, metaY + 24);
+        c.fillText("Aquifer: " + aquifer + "     County: " + county, padding, metaY + 24);
         c.fillText("Monitoring Status: " + mstatus, padding, metaY + 44);
         c.fillText("Time Period: " + currentPeriodLabel, padding, metaY + 64);
         c.drawImage(document.getElementById("hydrograph"), padding, ruleY + metaH + 24, totalW - padding * 2, chartH);
