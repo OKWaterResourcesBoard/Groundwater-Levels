@@ -19,6 +19,8 @@
       color: #333;
     }
     .owrb-header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap;
       padding: 12px 0 10px 0;
       border-bottom: 3px solid #007BC2;
       margin-bottom: 18px;
@@ -65,8 +67,11 @@
     .sidebar a:last-of-type { border-bottom: none; }
     .sidebar a:hover { color: #005a8e; text-decoration: underline; }
     .map-section { margin-top: 14px; }
-    .mini-map { height: 220px; width: 100%; border: 1px solid #ccc; border-radius: 6px; }
-    .map-expand-btn { margin-top: 6px; width: 100%; }
+    .mini-map { height: 200px; width: 100%; border: 1px solid #ccc; border-radius: 6px; }
+    .leaflet-container { background: #ffffff; }
+    .map-expand-btn { margin: 0; }
+    .map-band { margin: 0 0 16px 0; }
+    .map-band-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
     .map-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 1000; align-items: center; justify-content: center; }
     .map-modal-content { position: relative; width: 85vw; height: 82vh; background: #fff; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); overflow: hidden; }
     .map-modal-map { width: 100%; height: 100%; }
@@ -76,7 +81,22 @@
       text-transform: uppercase; letter-spacing: 0.05em; font-weight: bold;
     }
     .main-content { flex: 1; min-width: 0; }
-    .chart-container { position: relative; height: 380px; margin-top: 6px; }
+    .chart-container { position: relative; height: 480px; margin-top: 6px; }
+    .top-links {
+      display: flex; flex-wrap: wrap; gap: 6px 22px;
+      margin: 0; font-size: 13px;
+    }
+    .top-links a { color: #007BC2; text-decoration: none; font-weight: 600; }
+    .top-links a:hover { text-decoration: underline; }
+    .map-col {
+      width: 240px; flex: 0 0 240px;
+      background: #f5f7fa; border: 1px solid #d0d8e4;
+      border-radius: 6px; padding: 14px 12px;
+    }
+    .map-col-title {
+      color: #007BC2; font-size: 12px; margin: 0 0 8px 0;
+      text-transform: uppercase; letter-spacing: 0.05em; font-weight: bold;
+    }
 
     /* noUiSlider overrides */
     .slider-wrap { margin: 16px 0 10px 0; }
@@ -109,6 +129,12 @@
 <body>
   <div class="owrb-header">
     <img src="../Branded-Logo-OWRB.svg" alt="Oklahoma Water Resources Board">
+    <div class="top-links">
+      <a href="https://oklahoma.gov/owrb.html" target="_blank">OWRB Home</a>
+      <a href="https://www.owrb.ok.gov/wd/search/search.php" target="_blank">Well Log Search</a>
+      <a href="https://oklahoma.gov/owrb/wells-and-licensing.html" target="_blank">Wells &amp; Licensing</a>
+      <a href="https://oklahoma.gov/owrb/data-and-maps/water-monitoring-and-data.html" target="_blank">Water Monitoring &amp; Data</a>
+    </div>
   </div>
   <a class="back-link" href="../index.html">&larr; Back to Well Index</a>
   <h2>Well ID: 84724</h2>
@@ -117,20 +143,7 @@
     <span><strong>County:</strong> Carter</span>
     <span><strong>Monitoring Status:</strong> Actively Monitored</span>
   </div>
-  <div class="page-layout">
-    <div class="sidebar">
-      <h3>Links</h3>
-      <a href="https://oklahoma.gov/owrb.html" target="_blank">OWRB Home</a>
-      <a href="https://www.owrb.ok.gov/wd/search/search.php" target="_blank">Well Log Search</a>
-      <a href="https://oklahoma.gov/owrb/wells-and-licensing.html" target="_blank">Wells &amp; Licensing</a>
-      <a href="https://oklahoma.gov/owrb/data-and-maps/water-monitoring-and-data.html" target="_blank">Water Monitoring &amp; Data</a>
-      <div class="map-section">
-        <h3>Well Location</h3>
-        <div id="wellMap" class="mini-map"></div>
-        <button class="btn map-expand-btn" onclick="openMapModal()">&#10530; Expand map</button>
-      </div>
-    </div>
-    <div class="main-content">
+  <div class="main-content">
       <div class="chart-container">
         <canvas id="hydrograph"></canvas>
       </div>
@@ -145,6 +158,13 @@
       <div style="margin-top:12px;">
         <button class="btn" onclick="saveChart()">&#8681; Save Graph</button>
         <button class="btn" onclick="exportTable()">&#8681; Export Table</button>
+      </div>
+      <div class="map-band">
+        <div class="map-band-head">
+          <h3 class="map-col-title">Well Location</h3>
+          <button class="btn map-expand-btn" onclick="openMapModal()">&#10530; Expand map</button>
+        </div>
+        <div id="wellMap" class="mini-map"></div>
       </div>
       <p class="note">Data Table</p>
       <table id="dataTable">
@@ -173,7 +193,6 @@
         <span id="pageInfo"></span>
         <button class="btn" onclick="tablePage(1)">Next &#8594;</button>
       </div>
-    </div>
   </div>
   <div id="mapModal" class="map-modal">
     <div class="map-modal-content">
@@ -183,54 +202,49 @@
   </div>
   <script>
     (function() {
-      var center = [34.28184394, -96.99006114];
-      var zoom = 11;
       var hasMarker = true;
       var mLat = 34.28184394, mLon = -96.99006114;
       var wellLabel = "Well 84724";
+      var okGeo = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"name":"Oklahoma"},"geometry":{"type":"Polygon","coordinates":[[[-100.087706,37.000263],[-94.616242,37.000263],[-94.616242,36.501861],[-94.430026,35.395519],[-94.484796,33.637421],[-94.868182,33.74696],[-94.966767,33.861976],[-95.224183,33.960561],[-95.289906,33.87293],[-95.547322,33.878407],[-95.602092,33.933176],[-95.8376,33.834591],[-95.936185,33.889361],[-96.149786,33.840068],[-96.346956,33.686714],[-96.423633,33.774345],[-96.631756,33.845545],[-96.850834,33.845545],[-96.922034,33.960561],[-97.173974,33.736006],[-97.256128,33.861976],[-97.371143,33.823637],[-97.458774,33.905791],[-97.694283,33.982469],[-97.869545,33.851022],[-97.946222,33.987946],[-98.088623,34.004376],[-98.170777,34.113915],[-98.36247,34.157731],[-98.488439,34.064623],[-98.570593,34.146777],[-98.767763,34.135823],[-98.986841,34.223454],[-99.189488,34.2125],[-99.260688,34.404193],[-99.57835,34.415147],[-99.698843,34.382285],[-99.923398,34.573978],[-100.000075,34.563024],[-100.000075,36.501861],[-101.812942,36.501861],[-103.001438,36.501861],[-103.001438,37.000263],[-102.042974,36.994786],[-100.087706,37.000263]]]}}]};
+      var okStyle = { color: "#007BC2", weight: 2.5, fill: false };
 
-      function addTiles(m) {
+      function buildMap(id, interactive) {
+        var m = L.map(id, {
+          zoomControl: interactive, dragging: interactive, scrollWheelZoom: false,
+          doubleClickZoom: interactive, boxZoom: interactive, touchZoom: interactive,
+          keyboard: false, attributionControl: true
+        });
         L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-          maxZoom: 19,
-          attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
+          maxZoom: 19, attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
         }).addTo(m);
-      }
-      function addMarker(m) {
+        var layer = L.geoJSON(okGeo, { interactive: false, style: okStyle }).addTo(m);
+        m.fitBounds(layer.getBounds(), { padding: [10, 10] });
         if (hasMarker) {
-          L.circleMarker([mLat, mLon], { radius: 7, color: "#B5491A", fillColor: "#B5491A", fillOpacity: 0.9, weight: 2 })
+          L.circleMarker([mLat, mLon], { radius: 6, color: "#B5491A", fillColor: "#B5491A", fillOpacity: 0.95, weight: 2 })
             .addTo(m).bindPopup(wellLabel);
         }
-      }
-      function addBoundary(m) {
-        fetch("../ok_boundary.geojson")
-          .then(function(r) { return r.json(); })
-          .then(function(gj) {
-            L.geoJSON(gj, { interactive: false, style: { color: "#007BC2", weight: 2.5, opacity: 0.9, fill: false } }).addTo(m);
-          })
-          .catch(function() {});
+        return { map: m, layer: layer };
       }
 
-      var okBounds = [[33.6, -103.1], [37.05, -94.4]];
-      var miniMap = L.map("wellMap", { scrollWheelZoom: false });
-      addTiles(miniMap);
-      addBoundary(miniMap);
-      addMarker(miniMap);
-      miniMap.fitBounds(okBounds);
-      setTimeout(function() { miniMap.invalidateSize(); miniMap.fitBounds(okBounds); }, 150);
+      var mini = buildMap("wellMap", false);
+      setTimeout(function() {
+        mini.map.invalidateSize();
+        mini.map.fitBounds(mini.layer.getBounds(), { padding: [10, 10] });
+      }, 150);
 
-      var bigMap = null;
+      var bigMap = null, bigLayer = null;
       var modal = document.getElementById("mapModal");
 
       window.openMapModal = function() {
         modal.style.display = "flex";
         if (!bigMap) {
-          bigMap = L.map("wellMapLarge");
-          addTiles(bigMap);
-          addBoundary(bigMap);
-          addMarker(bigMap);
-          if (hasMarker) { bigMap.setView(center, 12); } else { bigMap.fitBounds(okBounds); }
+          var b = buildMap("wellMapLarge", true);
+          bigMap = b.map; bigLayer = b.layer;
         }
-        setTimeout(function() { bigMap.invalidateSize(); }, 100);
+        setTimeout(function() {
+          bigMap.invalidateSize();
+          bigMap.fitBounds(bigLayer.getBounds(), { padding: [30, 30] });
+        }, 100);
       };
       window.closeMapModal = function() { modal.style.display = "none"; };
 
