@@ -39,8 +39,12 @@
     .btn:hover { background-color: #e0e0e0; }
     table { border-collapse: collapse; width: 100%; margin-top: 4px; table-layout: fixed; }
     th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; width: 50%; }
-    .table-pager { margin-top: 10px; display: flex; align-items: center; gap: 12px; }
-    #pageInfo { font-size: 13px; color: #555; }
+    .table-pager { margin-top: 10px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    #pageNums { display: flex; gap: 6px; flex-wrap: wrap; }
+    .pager-num { padding: 4px 9px; }
+    .pager-num.active { background: #007BC2; color: #fff; border-color: #007BC2; }
+    .pager-gap { color: #999; padding: 0 4px; align-self: center; }
+    .coming-soon { text-align: center; margin: 16px 0; font-size: 26px; font-weight: bold; color: #B5491A; letter-spacing: 0.03em; }
     th { background-color: #007BC2; color: white; }
     tr:nth-child(even) { background-color: #f2f2f2; }
     tr.highlighted { background-color: #fff3a3 !important; }
@@ -167,7 +171,7 @@
       <tr><td><a href="wells/100480.html">100480</a></td><td>Ogallala NW</td><td>Ellis</td><td>Inactive</td><td>1</td><td>03/11/2021</td><td>03/11/2021</td></tr>
       <tr><td><a href="wells/100502.html">100502</a></td><td>Red River</td><td>Love</td><td>Actively Monitored</td><td>11</td><td>08/11/2015</td><td>01/08/2025</td></tr>
       <tr><td><a href="wells/100857.html">100857</a></td><td>Unknown</td><td>Beckham</td><td>Inactive</td><td>1</td><td>01/27/2010</td><td>01/27/2010</td></tr>
-      <tr><td><a href="wells/101246.html">101246</a></td><td>Arbuckle-Simpson</td><td>Johnston</td><td>Actively Monitored - Continuous Recorder</td><td>2</td><td>04/21/2015</td><td>07/07/2015</td></tr>
+      <tr><td><a href="wells/101246.html">101246</a></td><td>Arbuckle-Simpson</td><td>Johnston</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>2</td><td>04/21/2015</td><td>07/07/2015</td></tr>
       <tr><td><a href="wells/101328.html">101328</a></td><td>Rush Springs</td><td>Washita</td><td>Inactive</td><td>1</td><td>09/23/2013</td><td>09/23/2013</td></tr>
       <tr><td><a href="wells/101354.html">101354</a></td><td>Arbuckle-Simpson</td><td>Carter</td><td>Inactive</td><td>3</td><td>04/20/2015</td><td>06/03/2019</td></tr>
       <tr><td><a href="wells/101405.html">101405</a></td><td>Rush Springs</td><td>Custer</td><td>Inactive</td><td>2</td><td>06/17/2013</td><td>10/02/2013</td></tr>
@@ -268,7 +272,7 @@
       <tr><td><a href="wells/109969.html">109969</a></td><td>Salt Fork Arkansas River</td><td>Alfalfa</td><td>Actively Monitored</td><td>13</td><td>05/27/2014</td><td>01/13/2025</td></tr>
       <tr><td><a href="wells/109970.html">109970</a></td><td>Unknown</td><td>Alfalfa</td><td>Inactive</td><td>3</td><td>01/06/2009</td><td>01/04/2011</td></tr>
       <tr><td><a href="wells/109973.html">109973</a></td><td>Salt Fork Arkansas River</td><td>Alfalfa</td><td>Inactive</td><td>2</td><td>06/10/2014</td><td>07/22/2014</td></tr>
-      <tr><td><a href="wells/110093.html">110093</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Actively Monitored - Continuous Recorder</td><td>5</td><td>03/30/2016</td><td>01/18/2023</td></tr>
+      <tr><td><a href="wells/110093.html">110093</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>5</td><td>03/30/2016</td><td>01/18/2023</td></tr>
       <tr><td><a href="wells/1102.html">1102</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Actively Monitored</td><td>1</td><td>03/30/2021</td><td>03/30/2021</td></tr>
       <tr><td><a href="wells/110277.html">110277</a></td><td>Salt Fork Arkansas River</td><td>Grant</td><td>Actively Monitored</td><td>31</td><td>12/04/2008</td><td>01/08/2025</td></tr>
       <tr><td><a href="wells/110397.html">110397</a></td><td>Red River</td><td>Jefferson</td><td>Inactive</td><td>1</td><td>08/24/2015</td><td>08/24/2015</td></tr>
@@ -383,7 +387,7 @@
       <tr><td><a href="wells/120577.html">120577</a></td><td>Garber-Wellington</td><td>Lincoln</td><td>Inactive</td><td>3</td><td>05/30/2018</td><td>01/22/2020</td></tr>
       <tr><td><a href="wells/12063.html">12063</a></td><td>Ada-Vamoosa</td><td>Payne</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/120701.html">120701</a></td><td>Salt Fork Arkansas River</td><td>Grant</td><td>Actively Monitored</td><td>31</td><td>12/12/2008</td><td>01/13/2025</td></tr>
-      <tr><td><a href="wells/120969.html">120969</a></td><td>Ogallala NW</td><td>Ellis</td><td>Actively Monitored - Continuous Recorder</td><td>12</td><td>06/19/2013</td><td>01/25/2023</td></tr>
+      <tr><td><a href="wells/120969.html">120969</a></td><td>Ogallala NW</td><td>Ellis</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>12</td><td>06/19/2013</td><td>01/25/2023</td></tr>
       <tr><td><a href="wells/120993.html">120993</a></td><td>Ada-Vamoosa</td><td>Creek</td><td>Actively Monitored</td><td>26</td><td>09/08/2014</td><td>01/07/2025</td></tr>
       <tr><td><a href="wells/121.html">121</a></td><td>Ogallala Panhandle</td><td>Beaver</td><td>Actively Monitored</td><td>26</td><td>02/22/2000</td><td>01/28/2025</td></tr>
       <tr><td><a href="wells/1210.html">1210</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
@@ -440,17 +444,17 @@
       <tr><td><a href="wells/126777.html">126777</a></td><td>Washita River</td><td>Grady</td><td>Actively Monitored</td><td>11</td><td>06/02/2014</td><td>02/14/2023</td></tr>
       <tr><td><a href="wells/127011.html">127011</a></td><td>Dakota-Dockum</td><td>Cimarron</td><td>Inactive</td><td>1</td><td>06/15/2021</td><td>06/15/2021</td></tr>
       <tr><td><a href="wells/127104.html">127104</a></td><td>Minor-Oscar</td><td>Lincoln</td><td>Inactive</td><td>2</td><td>02/26/2014</td><td>01/21/2015</td></tr>
-      <tr><td><a href="wells/127105.html">127105</a></td><td>Washita River</td><td>Grady</td><td>Actively Monitored - Continuous Recorder</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
-      <tr><td><a href="wells/127446.html">127446</a></td><td>Garber-Wellington</td><td>Logan</td><td>Actively Monitored - Continuous Recorder</td><td>16</td><td>09/25/2015</td><td>01/27/2021</td></tr>
+      <tr><td><a href="wells/127105.html">127105</a></td><td>Washita River</td><td>Grady</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
+      <tr><td><a href="wells/127446.html">127446</a></td><td>Garber-Wellington</td><td>Logan</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>16</td><td>09/25/2015</td><td>01/27/2021</td></tr>
       <tr><td><a href="wells/127518.html">127518</a></td><td>Garber-Wellington</td><td>Pottawatomie</td><td>Inactive</td><td>2</td><td>06/18/2013</td><td>10/16/2013</td></tr>
-      <tr><td><a href="wells/127559.html">127559</a></td><td>Garber-Wellington</td><td>Oklahoma</td><td>Actively Monitored - Continuous Recorder</td><td>6</td><td>05/31/2018</td><td>02/26/2021</td></tr>
+      <tr><td><a href="wells/127559.html">127559</a></td><td>Garber-Wellington</td><td>Oklahoma</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>6</td><td>05/31/2018</td><td>02/26/2021</td></tr>
       <tr><td><a href="wells/12773.html">12773</a></td><td>Arbuckle-Simpson</td><td>Pontotoc</td><td>Actively Monitored</td><td>43</td><td>01/25/1994</td><td>01/06/2025</td></tr>
       <tr><td><a href="wells/127925.html">127925</a></td><td>Arkansas River</td><td>Tulsa</td><td>Inactive</td><td>1</td><td>06/23/2014</td><td>06/23/2014</td></tr>
       <tr><td><a href="wells/12793.html">12793</a></td><td>Gerty Sand</td><td>Pontotoc</td><td>Actively Monitored</td><td>28</td><td>07/23/2013</td><td>01/06/2025</td></tr>
       <tr><td><a href="wells/128353.html">128353</a></td><td>Ogallala Panhandle</td><td>Beaver</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/128355.html">128355</a></td><td>Ogallala NW</td><td>Ellis</td><td>Inactive</td><td>9</td><td>01/12/2012</td><td>01/25/2016</td></tr>
       <tr><td><a href="wells/128445.html">128445</a></td><td>Unknown</td><td>Texas</td><td>Inactive</td><td>1</td><td>01/05/2011</td><td>01/05/2011</td></tr>
-      <tr><td><a href="wells/128507.html">128507</a></td><td>Garber-Wellington</td><td>Cleveland</td><td>Actively Monitored - Continuous Recorder</td><td>20</td><td>02/25/2014</td><td>03/02/2021</td></tr>
+      <tr><td><a href="wells/128507.html">128507</a></td><td>Garber-Wellington</td><td>Cleveland</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>20</td><td>02/25/2014</td><td>03/02/2021</td></tr>
       <tr><td><a href="wells/12853.html">12853</a></td><td>Canadian River</td><td>Pontotoc</td><td>Inactive</td><td>30</td><td>02/16/1995</td><td>01/31/2017</td></tr>
       <tr><td><a href="wells/128543.html">128543</a></td><td>Cimarron River</td><td>Alfalfa</td><td>Actively Monitored</td><td>9</td><td>01/06/2017</td><td>01/15/2025</td></tr>
       <tr><td><a href="wells/12868.html">12868</a></td><td>Canadian River</td><td>Pontotoc</td><td>Inactive</td><td>1</td><td>09/04/2013</td><td>09/04/2013</td></tr>
@@ -459,7 +463,7 @@
       <tr><td><a href="wells/128955.html">128955</a></td><td>Garber-Wellington</td><td>Oklahoma</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/129009.html">129009</a></td><td>Cimarron River</td><td>Kingfisher</td><td>Actively Monitored</td><td>9</td><td>01/24/2017</td><td>01/27/2025</td></tr>
       <tr><td><a href="wells/12912.html">12912</a></td><td>Unknown</td><td>Coal</td><td>Inactive</td><td>17</td><td>03/11/1994</td><td>03/25/2010</td></tr>
-      <tr><td><a href="wells/129152.html">129152</a></td><td>Ogallala Panhandle</td><td>Cimarron</td><td>Actively Monitored - Continuous Recorder</td><td>17</td><td>06/07/2016</td><td>01/17/2023</td></tr>
+      <tr><td><a href="wells/129152.html">129152</a></td><td>Ogallala Panhandle</td><td>Cimarron</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>17</td><td>06/07/2016</td><td>01/17/2023</td></tr>
       <tr><td><a href="wells/129213.html">129213</a></td><td>Red River</td><td>Love</td><td>Actively Monitored</td><td>22</td><td>07/27/2015</td><td>01/08/2025</td></tr>
       <tr><td><a href="wells/129282.html">129282</a></td><td>Washita River</td><td>Custer</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/129385.html">129385</a></td><td>Rush Springs</td><td>Roger Mills</td><td>Inactive</td><td>2</td><td>01/17/2012</td><td>01/29/2013</td></tr>
@@ -547,7 +551,7 @@
       <tr><td><a href="wells/137067.html">137067</a></td><td>North Canadian River</td><td>Blaine</td><td>Actively Monitored</td><td>22</td><td>04/09/2015</td><td>01/29/2025</td></tr>
       <tr><td><a href="wells/137161.html">137161</a></td><td>Dakota-Dockum</td><td>Cimarron</td><td>Actively Monitored</td><td>9</td><td>01/11/2012</td><td>03/16/2021</td></tr>
       <tr><td><a href="wells/13725.html">13725</a></td><td>Arbuckle-Simpson</td><td>Johnston</td><td>Inactive</td><td>35</td><td>01/26/1994</td><td>01/29/2019</td></tr>
-      <tr><td><a href="wells/137270.html">137270</a></td><td>Ogallala Panhandle</td><td>Beaver</td><td>Actively Monitored - Continuous Recorder</td><td>8</td><td>03/09/2016</td><td>01/24/2022</td></tr>
+      <tr><td><a href="wells/137270.html">137270</a></td><td>Ogallala Panhandle</td><td>Beaver</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>8</td><td>03/09/2016</td><td>01/24/2022</td></tr>
       <tr><td><a href="wells/13741.html">13741</a></td><td>Arbuckle-Simpson</td><td>Johnston</td><td>Actively Monitored</td><td>11</td><td>04/21/2015</td><td>02/07/2023</td></tr>
       <tr><td><a href="wells/13744.html">13744</a></td><td>Arbuckle-Simpson</td><td>Johnston</td><td>Inactive</td><td>3</td><td>04/21/2015</td><td>06/05/2019</td></tr>
       <tr><td><a href="wells/137451.html">137451</a></td><td>Wolf Creek</td><td>Ellis</td><td>Actively Monitored</td><td>12</td><td>06/09/2015</td><td>01/28/2025</td></tr>
@@ -587,7 +591,7 @@
       <tr><td><a href="wells/139760.html">139760</a></td><td>Boone</td><td>Cherokee</td><td>Actively Monitored</td><td>10</td><td>05/23/2017</td><td>01/15/2025</td></tr>
       <tr><td><a href="wells/139784.html">139784</a></td><td>Rush Springs</td><td>Custer</td><td>Actively Monitored</td><td>14</td><td>03/15/2012</td><td>01/28/2025</td></tr>
       <tr><td><a href="wells/14.html">14</a></td><td>Ogallala Panhandle</td><td>Beaver</td><td>Actively Monitored</td><td>36</td><td>01/22/1991</td><td>01/06/2025</td></tr>
-      <tr><td><a href="wells/140033.html">140033</a></td><td>Rush Springs</td><td>Dewey</td><td>Actively Monitored - Continuous Recorder</td><td>16</td><td>09/25/2015</td><td>01/12/2021</td></tr>
+      <tr><td><a href="wells/140033.html">140033</a></td><td>Rush Springs</td><td>Dewey</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>16</td><td>09/25/2015</td><td>01/12/2021</td></tr>
       <tr><td><a href="wells/140047.html">140047</a></td><td>Rush Springs</td><td>Caddo</td><td>Inactive</td><td>3</td><td>06/19/2013</td><td>08/07/2019</td></tr>
       <tr><td><a href="wells/14037.html">14037</a></td><td>Unknown</td><td>Pushmataha</td><td>Inactive</td><td>12</td><td>03/04/1994</td><td>02/16/2005</td></tr>
       <tr><td><a href="wells/140424.html">140424</a></td><td>Garber-Wellington</td><td>Cleveland</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
@@ -595,7 +599,7 @@
       <tr><td><a href="wells/140503.html">140503</a></td><td>Ogallala NW</td><td>Roger Mills</td><td>Inactive</td><td>2</td><td>06/25/2013</td><td>08/13/2013</td></tr>
       <tr><td><a href="wells/140592.html">140592</a></td><td>Ogallala Panhandle</td><td>Beaver</td><td>Actively Monitored</td><td>21</td><td>02/22/2016</td><td>01/07/2025</td></tr>
       <tr><td><a href="wells/1408.html">1408</a></td><td>Unknown</td><td>Texas</td><td>Inactive</td><td>26</td><td>02/23/1964</td><td>01/09/1990</td></tr>
-      <tr><td><a href="wells/140808.html">140808</a></td><td>Ogallala NW</td><td>Ellis</td><td>Actively Monitored - Continuous Recorder</td><td>23</td><td>01/11/2012</td><td>01/25/2023</td></tr>
+      <tr><td><a href="wells/140808.html">140808</a></td><td>Ogallala NW</td><td>Ellis</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>23</td><td>01/11/2012</td><td>01/25/2023</td></tr>
       <tr><td><a href="wells/140931.html">140931</a></td><td>Rush Springs</td><td>Blaine</td><td>Actively Monitored</td><td>14</td><td>06/05/2013</td><td>01/29/2025</td></tr>
       <tr><td><a href="wells/140935.html">140935</a></td><td>Rush Springs</td><td>Blaine</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/140936.html">140936</a></td><td>Rush Springs</td><td>Blaine</td><td>Actively Monitored</td><td>22</td><td>10/09/2013</td><td>01/29/2025</td></tr>
@@ -651,8 +655,8 @@
       <tr><td><a href="wells/145378.html">145378</a></td><td>Salt Fork Arkansas River</td><td>Grant</td><td>Actively Monitored</td><td>25</td><td>07/14/2014</td><td>01/13/2025</td></tr>
       <tr><td><a href="wells/14545.html">14545</a></td><td>Ada-Vamoosa</td><td>Pawnee</td><td>Inactive</td><td>2</td><td>06/02/2014</td><td>09/16/2014</td></tr>
       <tr><td><a href="wells/145940.html">145940</a></td><td>Ogallala Panhandle</td><td>Cimarron</td><td>Inactive</td><td>1</td><td>03/16/2021</td><td>03/16/2021</td></tr>
-      <tr><td><a href="wells/14604.html">14604</a></td><td>Ada-Vamoosa</td><td>Osage</td><td>Actively Monitored - Continuous Recorder</td><td>13</td><td>07/09/2014</td><td>01/21/2025</td></tr>
-      <tr><td><a href="wells/146108.html">146108</a></td><td>Boone/Roubidoux</td><td>Delaware</td><td>Actively Monitored - Continuous Recorder</td><td>9</td><td>11/14/2017</td><td>09/22/2020</td></tr>
+      <tr><td><a href="wells/14604.html">14604</a></td><td>Ada-Vamoosa</td><td>Osage</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>13</td><td>07/09/2014</td><td>01/21/2025</td></tr>
+      <tr><td><a href="wells/146108.html">146108</a></td><td>Boone/Roubidoux</td><td>Delaware</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>9</td><td>11/14/2017</td><td>09/22/2020</td></tr>
       <tr><td><a href="wells/146223.html">146223</a></td><td>Arbuckle-Simpson</td><td>Murray</td><td>Inactive</td><td>2</td><td>04/20/2015</td><td>07/06/2015</td></tr>
       <tr><td><a href="wells/146316.html">146316</a></td><td>Arkansas River</td><td>Osage</td><td>Actively Monitored</td><td>26</td><td>05/06/2014</td><td>01/21/2025</td></tr>
       <tr><td><a href="wells/146388.html">146388</a></td><td>Ogallala NW</td><td>Ellis</td><td>Actively Monitored</td><td>32</td><td>07/31/2013</td><td>01/28/2025</td></tr>
@@ -705,11 +709,11 @@
       <tr><td><a href="wells/151326.html">151326</a></td><td>Antlers</td><td>Mccurtain</td><td>Inactive</td><td>1</td><td>06/19/2019</td><td>06/19/2019</td></tr>
       <tr><td><a href="wells/151468.html">151468</a></td><td>Arkansas River</td><td>Kay</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/151510.html">151510</a></td><td>Salt Fork Arkansas River</td><td>Grant</td><td>Actively Monitored</td><td>12</td><td>01/21/2015</td><td>01/08/2025</td></tr>
-      <tr><td><a href="wells/151526.html">151526</a></td><td>Ada-Vamoosa</td><td>Pawnee</td><td>Actively Monitored - Continuous Recorder</td><td>14</td><td>01/07/2015</td><td>01/21/2025</td></tr>
+      <tr><td><a href="wells/151526.html">151526</a></td><td>Ada-Vamoosa</td><td>Pawnee</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>14</td><td>01/07/2015</td><td>01/21/2025</td></tr>
       <tr><td><a href="wells/151553.html">151553</a></td><td>Washita River</td><td>Johnston</td><td>Actively Monitored</td><td>13</td><td>07/16/2014</td><td>01/07/2025</td></tr>
       <tr><td><a href="wells/1516.html">1516</a></td><td>Unknown</td><td>Texas</td><td>Inactive</td><td>1</td><td>01/08/2013</td><td>01/08/2013</td></tr>
       <tr><td><a href="wells/151683.html">151683</a></td><td>Arbuckle-Simpson</td><td>Pontotoc</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
-      <tr><td><a href="wells/152352.html">152352</a></td><td>Ada-Vamoosa</td><td>Seminole</td><td>Actively Monitored - Continuous Recorder</td><td>12</td><td>04/30/2014</td><td>02/14/2019</td></tr>
+      <tr><td><a href="wells/152352.html">152352</a></td><td>Ada-Vamoosa</td><td>Seminole</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>12</td><td>04/30/2014</td><td>02/14/2019</td></tr>
       <tr><td><a href="wells/152367.html">152367</a></td><td>Cimarron River</td><td>Payne</td><td>Actively Monitored</td><td>11</td><td>08/02/2016</td><td>01/22/2025</td></tr>
       <tr><td><a href="wells/152372.html">152372</a></td><td>Washita River</td><td>Garvin</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/152714.html">152714</a></td><td>Salt Fork Arkansas River</td><td>Alfalfa</td><td>Actively Monitored</td><td>24</td><td>07/21/2014</td><td>01/13/2025</td></tr>
@@ -743,14 +747,14 @@
       <tr><td><a href="wells/15550.html">15550</a></td><td>Unknown</td><td>Garfield</td><td>Inactive</td><td>2</td><td>07/15/2014</td><td>09/08/2014</td></tr>
       <tr><td><a href="wells/155534.html">155534</a></td><td>Red River</td><td>Jackson</td><td>Inactive</td><td>2</td><td>08/12/2020</td><td>08/12/2020</td></tr>
       <tr><td><a href="wells/15596.html">15596</a></td><td>Roubidoux</td><td>Craig</td><td>Inactive</td><td>1</td><td>08/07/2017</td><td>08/07/2017</td></tr>
-      <tr><td><a href="wells/15597.html">15597</a></td><td>Roubidoux</td><td>Craig</td><td>Actively Monitored - Continuous Recorder</td><td>12</td><td>08/21/2017</td><td>01/12/2021</td></tr>
+      <tr><td><a href="wells/15597.html">15597</a></td><td>Roubidoux</td><td>Craig</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>12</td><td>08/21/2017</td><td>01/12/2021</td></tr>
       <tr><td><a href="wells/15601.html">15601</a></td><td>Boone</td><td>Ottawa</td><td>Inactive</td><td>2</td><td>06/20/2017</td><td>09/26/2017</td></tr>
       <tr><td><a href="wells/1561.html">1561</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Inactive</td><td>15</td><td>01/08/2001</td><td>01/06/2015</td></tr>
       <tr><td><a href="wells/156105.html">156105</a></td><td>Garber-Wellington</td><td>Cleveland</td><td>Actively Monitored</td><td>15</td><td>06/03/2013</td><td>01/29/2025</td></tr>
       <tr><td><a href="wells/156215.html">156215</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Inactive</td><td>1</td><td>04/13/2016</td><td>04/13/2016</td></tr>
       <tr><td><a href="wells/156313.html">156313</a></td><td>Boone</td><td>Mayes</td><td>Actively Monitored</td><td>16</td><td>10/17/2017</td><td>01/14/2025</td></tr>
       <tr><td><a href="wells/156413.html">156413</a></td><td>Boone</td><td>Delaware</td><td>Actively Monitored</td><td>16</td><td>06/21/2017</td><td>01/14/2025</td></tr>
-      <tr><td><a href="wells/156516.html">156516</a></td><td>Rush Springs</td><td>Custer</td><td>Actively Monitored - Continuous Recorder</td><td>1</td><td>10/18/2017</td><td>10/18/2017</td></tr>
+      <tr><td><a href="wells/156516.html">156516</a></td><td>Rush Springs</td><td>Custer</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>1</td><td>10/18/2017</td><td>10/18/2017</td></tr>
       <tr><td><a href="wells/156700.html">156700</a></td><td>Antlers</td><td>Bryan</td><td>Actively Monitored</td><td>11</td><td>05/19/2015</td><td>01/22/2025</td></tr>
       <tr><td><a href="wells/156715.html">156715</a></td><td>Ogallala Panhandle</td><td>Beckham</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/15715.html">15715</a></td><td>Roubidoux</td><td>Ottawa</td><td>Actively Monitored</td><td>13</td><td>06/19/2017</td><td>01/14/2025</td></tr>
@@ -759,7 +763,7 @@
       <tr><td><a href="wells/15730.html">15730</a></td><td>Roubidoux</td><td>Ottawa</td><td>Inactive</td><td>1</td><td>09/26/2017</td><td>09/26/2017</td></tr>
       <tr><td><a href="wells/157335.html">157335</a></td><td>Antlers</td><td>Love</td><td>Actively Monitored</td><td>19</td><td>06/03/2015</td><td>01/08/2025</td></tr>
       <tr><td><a href="wells/157392.html">157392</a></td><td>Arbuckle-Simpson</td><td>Johnston</td><td>Inactive</td><td>2</td><td>07/13/2015</td><td>01/11/2016</td></tr>
-      <tr><td><a href="wells/157457.html">157457</a></td><td>Rush Springs</td><td>Caddo</td><td>Actively Monitored - Continuous Recorder</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
+      <tr><td><a href="wells/157457.html">157457</a></td><td>Rush Springs</td><td>Caddo</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/15748.html">15748</a></td><td>Boone</td><td>Ottawa</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/158109.html">158109</a></td><td>Cimarron River</td><td>Kingfisher</td><td>Actively Monitored</td><td>12</td><td>07/11/2016</td><td>01/27/2025</td></tr>
       <tr><td><a href="wells/158150.html">158150</a></td><td>Unknown</td><td>Garfield</td><td>Inactive</td><td>2</td><td>07/13/2014</td><td>09/08/2014</td></tr>
@@ -821,7 +825,7 @@
       <tr><td><a href="wells/165518.html">165518</a></td><td>Tillman Terrace</td><td>Tillman</td><td>Actively Monitored</td><td>16</td><td>12/11/2014</td><td>01/23/2025</td></tr>
       <tr><td><a href="wells/165519.html">165519</a></td><td>Tillman Terrace</td><td>Tillman</td><td>Actively Monitored</td><td>23</td><td>12/11/2014</td><td>01/24/2025</td></tr>
       <tr><td><a href="wells/165520.html">165520</a></td><td>Tillman Terrace</td><td>Tillman</td><td>Actively Monitored</td><td>14</td><td>12/11/2014</td><td>01/24/2025</td></tr>
-      <tr><td><a href="wells/165726.html">165726</a></td><td>Tillman Terrace</td><td>Tillman</td><td>Actively Monitored - Continuous Recorder</td><td>18</td><td>05/16/2015</td><td>03/01/2021</td></tr>
+      <tr><td><a href="wells/165726.html">165726</a></td><td>Tillman Terrace</td><td>Tillman</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>18</td><td>05/16/2015</td><td>03/01/2021</td></tr>
       <tr><td><a href="wells/165794.html">165794</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/1660.html">1660</a></td><td>Unknown</td><td>Texas</td><td>Inactive</td><td>9</td><td>02/23/2000</td><td>01/14/2008</td></tr>
       <tr><td><a href="wells/166058.html">166058</a></td><td>North Canadian River</td><td>Harper</td><td>Actively Monitored</td><td>11</td><td>09/16/2015</td><td>01/14/2025</td></tr>
@@ -871,7 +875,7 @@
       <tr><td><a href="wells/172614.html">172614</a></td><td>Boone</td><td>Mayes</td><td>Actively Monitored</td><td>16</td><td>08/09/2017</td><td>01/15/2025</td></tr>
       <tr><td><a href="wells/172805.html">172805</a></td><td>Ogallala NW</td><td>Woodward</td><td>Inactive</td><td>1</td><td>03/12/2021</td><td>03/12/2021</td></tr>
       <tr><td><a href="wells/172994.html">172994</a></td><td>Garber-Wellington</td><td>Pottawatomie</td><td>Inactive</td><td>1</td><td>05/30/2019</td><td>05/30/2019</td></tr>
-      <tr><td><a href="wells/173371.html">173371</a></td><td>Canadian River</td><td>Dewey</td><td>Actively Monitored - Continuous Recorder</td><td>14</td><td>04/08/2016</td><td>02/22/2021</td></tr>
+      <tr><td><a href="wells/173371.html">173371</a></td><td>Canadian River</td><td>Dewey</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>14</td><td>04/08/2016</td><td>02/22/2021</td></tr>
       <tr><td><a href="wells/17358.html">17358</a></td><td>Antlers</td><td>Mccurtain</td><td>Actively Monitored</td><td>21</td><td>06/01/2015</td><td>01/22/2025</td></tr>
       <tr><td><a href="wells/17361.html">17361</a></td><td>Antlers</td><td>Mccurtain</td><td>Actively Monitored</td><td>12</td><td>03/18/2015</td><td>01/22/2025</td></tr>
       <tr><td><a href="wells/17365.html">17365</a></td><td>Antlers</td><td>Mccurtain</td><td>Actively Monitored</td><td>21</td><td>06/01/2015</td><td>01/22/2025</td></tr>
@@ -918,7 +922,7 @@
       <tr><td><a href="wells/1793.html">1793</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/1794.html">1794</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/1795.html">1795</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
-      <tr><td><a href="wells/179563.html">179563</a></td><td>North Fork Red River Alluvial Aquifer</td><td>Greer</td><td>Actively Monitored - Continuous Recorder</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
+      <tr><td><a href="wells/179563.html">179563</a></td><td>North Fork Red River Alluvial Aquifer</td><td>Greer</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/179564.html">179564</a></td><td>North Fork Red River</td><td>Greer</td><td>Inactive</td><td>9</td><td>11/14/2018</td><td>01/22/2025</td></tr>
       <tr><td><a href="wells/17957.html">17957</a></td><td>Unknown</td><td>Alfalfa</td><td>Inactive</td><td>1</td><td>01/05/2009</td><td>01/05/2009</td></tr>
       <tr><td><a href="wells/1796.html">1796</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Inactive</td><td>1</td><td>03/10/2021</td><td>03/10/2021</td></tr>
@@ -928,12 +932,12 @@
       <tr><td><a href="wells/18037.html">18037</a></td><td>Salt Fork Arkansas River</td><td>Alfalfa</td><td>Actively Monitored</td><td>10</td><td>07/23/2014</td><td>02/01/2022</td></tr>
       <tr><td><a href="wells/1804.html">1804</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Inactive</td><td>1</td><td>03/10/2021</td><td>03/10/2021</td></tr>
       <tr><td><a href="wells/1805.html">1805</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Inactive</td><td>1</td><td>03/10/2021</td><td>03/10/2021</td></tr>
-      <tr><td><a href="wells/180633.html">180633</a></td><td>Boone</td><td>Ottawa</td><td>Actively Monitored - Continuous Recorder</td><td>10</td><td>05/31/2017</td><td>01/12/2021</td></tr>
+      <tr><td><a href="wells/180633.html">180633</a></td><td>Boone</td><td>Ottawa</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>10</td><td>05/31/2017</td><td>01/12/2021</td></tr>
       <tr><td><a href="wells/180699.html">180699</a></td><td>Roubidoux</td><td>Ottawa</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/180701.html">180701</a></td><td>Roubidoux</td><td>Ottawa</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/181.html">181</a></td><td>Unknown</td><td>Beaver</td><td>Inactive</td><td>1</td><td>01/09/2001</td><td>01/09/2001</td></tr>
       <tr><td><a href="wells/1810.html">1810</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Actively Monitored</td><td>32</td><td>01/15/1992</td><td>01/18/2023</td></tr>
-      <tr><td><a href="wells/181101.html">181101</a></td><td>Roubidoux</td><td>Ottawa</td><td>Actively Monitored - Continuous Recorder</td><td>11</td><td>06/21/2017</td><td>01/12/2021</td></tr>
+      <tr><td><a href="wells/181101.html">181101</a></td><td>Roubidoux</td><td>Ottawa</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>11</td><td>06/21/2017</td><td>01/12/2021</td></tr>
       <tr><td><a href="wells/18117.html">18117</a></td><td>Unknown</td><td>Major</td><td>Inactive</td><td>1</td><td>07/26/2016</td><td>07/26/2016</td></tr>
       <tr><td><a href="wells/1812.html">1812</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/181267.html">181267</a></td><td>Ogallala Panhandle</td><td>Cimarron</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
@@ -958,12 +962,12 @@
       <tr><td><a href="wells/182729.html">182729</a></td><td>Boone/Roubidoux</td><td>Craig</td><td>Inactive</td><td>2</td><td>09/28/2017</td><td>11/15/2017</td></tr>
       <tr><td><a href="wells/182731.html">182731</a></td><td>Roubidoux</td><td>Craig</td><td>Inactive</td><td>2</td><td>08/07/2017</td><td>11/15/2017</td></tr>
       <tr><td><a href="wells/1828.html">1828</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
-      <tr><td><a href="wells/182854.html">182854</a></td><td>Boone</td><td>Delaware</td><td>Actively Monitored - Continuous Recorder</td><td>12</td><td>08/22/2017</td><td>01/13/2021</td></tr>
+      <tr><td><a href="wells/182854.html">182854</a></td><td>Boone</td><td>Delaware</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>12</td><td>08/22/2017</td><td>01/13/2021</td></tr>
       <tr><td><a href="wells/1831.html">1831</a></td><td>Unknown</td><td>Texas</td><td>Inactive</td><td>2</td><td>01/20/2010</td><td>01/04/2011</td></tr>
       <tr><td><a href="wells/183134.html">183134</a></td><td>Ada-Vamoosa</td><td>Seminole</td><td>Inactive</td><td>2</td><td>12/05/2018</td><td>02/14/2019</td></tr>
       <tr><td><a href="wells/183273.html">183273</a></td><td>Ada-Vamoosa</td><td>Seminole</td><td>Actively Monitored</td><td>8</td><td>02/14/2019</td><td>01/06/2025</td></tr>
       <tr><td><a href="wells/1836.html">1836</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Inactive</td><td>23</td><td>01/10/1995</td><td>08/02/2016</td></tr>
-      <tr><td><a href="wells/183602.html">183602</a></td><td>Boone</td><td>Cherokee</td><td>Actively Monitored - Continuous Recorder</td><td>10</td><td>11/14/2017</td><td>01/14/2021</td></tr>
+      <tr><td><a href="wells/183602.html">183602</a></td><td>Boone</td><td>Cherokee</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>10</td><td>11/14/2017</td><td>01/14/2021</td></tr>
       <tr><td><a href="wells/1837.html">1837</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/18372.html">18372</a></td><td>Cimarron River</td><td>Major</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/183739.html">183739</a></td><td>Rush Springs</td><td>Woodward</td><td>Inactive</td><td>1</td><td>08/06/2019</td><td>08/06/2019</td></tr>
@@ -992,7 +996,7 @@
       <tr><td><a href="wells/186702.html">186702</a></td><td>Ada-Vamoosa</td><td>Okfuskee</td><td>Actively Monitored</td><td>10</td><td>12/05/2018</td><td>01/07/2025</td></tr>
       <tr><td><a href="wells/1868.html">1868</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/186926.html">186926</a></td><td>Blaine</td><td>Jackson</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
-      <tr><td><a href="wells/186942.html">186942</a></td><td>Blaine</td><td>Jackson</td><td>Actively Monitored - Continuous Recorder</td><td>1</td><td>10/08/2019</td><td>10/08/2019</td></tr>
+      <tr><td><a href="wells/186942.html">186942</a></td><td>Blaine</td><td>Jackson</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>1</td><td>10/08/2019</td><td>10/08/2019</td></tr>
       <tr><td><a href="wells/186958.html">186958</a></td><td>Blaine</td><td>Harmon</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/18699.html">18699</a></td><td>Cimarron River</td><td>Woods</td><td>Inactive</td><td>1</td><td>07/20/2016</td><td>07/20/2016</td></tr>
       <tr><td><a href="wells/1872.html">1872</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Inactive</td><td>3</td><td>01/10/2012</td><td>01/07/2014</td></tr>
@@ -1001,7 +1005,7 @@
       <tr><td><a href="wells/187772.html">187772</a></td><td>Blaine</td><td>Jackson</td><td>Inactive</td><td>1</td><td>10/08/2019</td><td>10/08/2019</td></tr>
       <tr><td><a href="wells/18819.html">18819</a></td><td>Cimarron River</td><td>Woods</td><td>Actively Monitored</td><td>10</td><td>07/27/2016</td><td>01/15/2025</td></tr>
       <tr><td><a href="wells/188223.html">188223</a></td><td>Ada-Vamoosa</td><td>Creek</td><td>Inactive</td><td>2</td><td>11/27/2018</td><td>02/14/2019</td></tr>
-      <tr><td><a href="wells/1886.html">1886</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Actively Monitored - Continuous Recorder</td><td>17</td><td>05/24/2016</td><td>01/23/2023</td></tr>
+      <tr><td><a href="wells/1886.html">1886</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>17</td><td>05/24/2016</td><td>01/23/2023</td></tr>
       <tr><td><a href="wells/189450.html">189450</a></td><td>Dakota-Dockum</td><td>Texas</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/1895.html">1895</a></td><td>Unknown</td><td>Texas</td><td>Inactive</td><td>45</td><td>02/24/1966</td><td>01/04/2011</td></tr>
       <tr><td><a href="wells/1896.html">1896</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
@@ -1102,7 +1106,7 @@
       <tr><td><a href="wells/2081.html">2081</a></td><td>Unknown</td><td>Cimarron</td><td>Inactive</td><td>22</td><td>01/24/1967</td><td>01/04/1989</td></tr>
       <tr><td><a href="wells/208118.html">208118</a></td><td>Ogallala NW</td><td>Ellis</td><td>Inactive</td><td>1</td><td>03/10/2021</td><td>03/10/2021</td></tr>
       <tr><td><a href="wells/2085.html">2085</a></td><td>Unknown</td><td>Cimarron</td><td>Inactive</td><td>12</td><td>01/15/1992</td><td>01/14/2003</td></tr>
-      <tr><td><a href="wells/20880.html">20880</a></td><td>Elk City</td><td>Washita</td><td>Actively Monitored - Continuous Recorder</td><td>43</td><td>02/07/1989</td><td>01/13/2021</td></tr>
+      <tr><td><a href="wells/20880.html">20880</a></td><td>Elk City</td><td>Washita</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>43</td><td>02/07/1989</td><td>01/13/2021</td></tr>
       <tr><td><a href="wells/20907.html">20907</a></td><td>Rush Springs</td><td>Washita</td><td>Inactive</td><td>15</td><td>03/01/2000</td><td>02/03/2014</td></tr>
       <tr><td><a href="wells/20923.html">20923</a></td><td>Rush Springs</td><td>Washita</td><td>Inactive</td><td>14</td><td>03/01/2000</td><td>01/28/2013</td></tr>
       <tr><td><a href="wells/2095.html">2095</a></td><td>Unknown</td><td>Cimarron</td><td>Inactive</td><td>6</td><td>01/15/1998</td><td>01/14/2003</td></tr>
@@ -1143,8 +1147,8 @@
       <tr><td><a href="wells/22062.html">22062</a></td><td>North Fork Red River</td><td>Jackson</td><td>Actively Monitored</td><td>5</td><td>01/23/2019</td><td>01/24/2025</td></tr>
       <tr><td><a href="wells/2208.html">2208</a></td><td>Unknown</td><td>Cimarron</td><td>Inactive</td><td>23</td><td>01/28/1967</td><td>01/11/1994</td></tr>
       <tr><td><a href="wells/22105.html">22105</a></td><td>Red River</td><td>Harmon</td><td>Actively Monitored</td><td>11</td><td>08/23/2015</td><td>01/23/2025</td></tr>
-      <tr><td><a href="wells/221261.html">221261</a></td><td>Rush Springs</td><td>Dewey</td><td>Actively Monitored - Continuous Recorder</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
-      <tr><td><a href="wells/221266.html">221266</a></td><td>Rush Springs</td><td>Woodward</td><td>Actively Monitored - Continuous Recorder</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
+      <tr><td><a href="wells/221261.html">221261</a></td><td>Rush Springs</td><td>Dewey</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
+      <tr><td><a href="wells/221266.html">221266</a></td><td>Rush Springs</td><td>Woodward</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/22135.html">22135</a></td><td>Unknown</td><td>Harmon</td><td>Inactive</td><td>7</td><td>01/23/1997</td><td>03/03/2003</td></tr>
       <tr><td><a href="wells/22153.html">22153</a></td><td>Blaine</td><td>Harmon</td><td>Actively Monitored</td><td>34</td><td>01/23/1992</td><td>01/23/2025</td></tr>
       <tr><td><a href="wells/22175.html">22175</a></td><td>Blaine</td><td>Harmon</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
@@ -1156,7 +1160,7 @@
       <tr><td><a href="wells/22263.html">22263</a></td><td>Salt Fork Red River</td><td>Harmon</td><td>Inactive</td><td>1</td><td>08/13/2014</td><td>08/13/2014</td></tr>
       <tr><td><a href="wells/2231.html">2231</a></td><td>Ogallala Panhandle</td><td>Cimarron</td><td>Actively Monitored</td><td>58</td><td>01/25/1967</td><td>01/07/2025</td></tr>
       <tr><td><a href="wells/22391.html">22391</a></td><td>Roubidoux</td><td>Ottawa</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
-      <tr><td><a href="wells/224227.html">224227</a></td><td>Rush Springs</td><td>Dewey</td><td>Actively Monitored - Continuous Recorder</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
+      <tr><td><a href="wells/224227.html">224227</a></td><td>Rush Springs</td><td>Dewey</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/2243.html">2243</a></td><td>Unknown</td><td>Cimarron</td><td>Inactive</td><td>23</td><td>01/25/1967</td><td>01/09/1990</td></tr>
       <tr><td><a href="wells/22453.html">22453</a></td><td>Unknown</td><td>Tulsa</td><td>Inactive</td><td>1</td><td>03/03/2003</td><td>03/03/2003</td></tr>
       <tr><td><a href="wells/2248.html">2248</a></td><td>Ogallala Panhandle</td><td>Cimarron</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
@@ -1218,9 +1222,9 @@
       <tr><td><a href="wells/2421.html">2421</a></td><td>Unknown</td><td>Beaver</td><td>Inactive</td><td>12</td><td>01/24/1991</td><td>01/13/2003</td></tr>
       <tr><td><a href="wells/2422.html">2422</a></td><td>Unknown</td><td>Beaver</td><td>Inactive</td><td>13</td><td>01/22/1991</td><td>01/16/2003</td></tr>
       <tr><td><a href="wells/2436.html">2436</a></td><td>Blaine</td><td>Harmon</td><td>Inactive</td><td>14</td><td>01/23/1997</td><td>01/19/2011</td></tr>
-      <tr><td><a href="wells/24401.html">24401</a></td><td>Ogallala Panhandle</td><td>Cimarron</td><td>Actively Monitored - Continuous Recorder</td><td>10</td><td>07/13/2016</td><td>01/25/2022</td></tr>
+      <tr><td><a href="wells/24401.html">24401</a></td><td>Ogallala Panhandle</td><td>Cimarron</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>10</td><td>07/13/2016</td><td>01/25/2022</td></tr>
       <tr><td><a href="wells/24406.html">24406</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Inactive</td><td>1</td><td>03/11/2021</td><td>03/11/2021</td></tr>
-      <tr><td><a href="wells/24408.html">24408</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Actively Monitored - Continuous Recorder</td><td>3</td><td>06/28/2016</td><td>03/30/2021</td></tr>
+      <tr><td><a href="wells/24408.html">24408</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>3</td><td>06/28/2016</td><td>03/30/2021</td></tr>
       <tr><td><a href="wells/2447.html">2447</a></td><td>Unknown</td><td>Roger Mills</td><td>Inactive</td><td>16</td><td>04/10/1979</td><td>03/22/1995</td></tr>
       <tr><td><a href="wells/2461.html">2461</a></td><td>Unknown</td><td>Roger Mills</td><td>Inactive</td><td>10</td><td>03/05/1996</td><td>03/21/2005</td></tr>
       <tr><td><a href="wells/2463.html">2463</a></td><td>Ogallala NW</td><td>Roger Mills</td><td>Actively Monitored</td><td>13</td><td>06/06/2013</td><td>01/27/2025</td></tr>
@@ -1238,7 +1242,7 @@
       <tr><td><a href="wells/2482.html">2482</a></td><td>Unknown</td><td>Roger Mills</td><td>Inactive</td><td>7</td><td>03/05/1996</td><td>03/20/2002</td></tr>
       <tr><td><a href="wells/24820.html">24820</a></td><td>Unknown</td><td>Texas</td><td>Inactive</td><td>17</td><td>01/21/1991</td><td>03/08/2007</td></tr>
       <tr><td><a href="wells/24821.html">24821</a></td><td>Unknown</td><td>Texas</td><td>Inactive</td><td>13</td><td>01/21/1991</td><td>01/13/2003</td></tr>
-      <tr><td><a href="wells/24822.html">24822</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Actively Monitored - Continuous Recorder</td><td>33</td><td>01/21/1991</td><td>01/19/2022</td></tr>
+      <tr><td><a href="wells/24822.html">24822</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>33</td><td>01/21/1991</td><td>01/19/2022</td></tr>
       <tr><td><a href="wells/24823.html">24823</a></td><td>Unknown</td><td>Beaver</td><td>Inactive</td><td>13</td><td>01/22/1991</td><td>01/16/2003</td></tr>
       <tr><td><a href="wells/24825.html">24825</a></td><td>Unknown</td><td>Woodward</td><td>Inactive</td><td>12</td><td>01/04/1989</td><td>03/08/2001</td></tr>
       <tr><td><a href="wells/24826.html">24826</a></td><td>Unknown</td><td>Woodward</td><td>Inactive</td><td>12</td><td>01/04/1989</td><td>03/08/2001</td></tr>
@@ -1315,7 +1319,7 @@
       <tr><td><a href="wells/27186.html">27186</a></td><td>North Fork Red River</td><td>Greer</td><td>Actively Monitored</td><td>26</td><td>05/05/2014</td><td>01/22/2025</td></tr>
       <tr><td><a href="wells/27195.html">27195</a></td><td>Salt Fork Arkansas River</td><td>Kay</td><td>Actively Monitored</td><td>16</td><td>06/10/2014</td><td>01/11/2023</td></tr>
       <tr><td><a href="wells/272.html">272</a></td><td>Unknown</td><td>Beaver</td><td>Inactive</td><td>4</td><td>02/22/2000</td><td>01/15/2003</td></tr>
-      <tr><td><a href="wells/27289.html">27289</a></td><td>Ada-Vamoosa</td><td>Seminole</td><td>Actively Monitored - Continuous Recorder</td><td>35</td><td>01/25/1994</td><td>01/06/2025</td></tr>
+      <tr><td><a href="wells/27289.html">27289</a></td><td>Ada-Vamoosa</td><td>Seminole</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>35</td><td>01/25/1994</td><td>01/06/2025</td></tr>
       <tr><td><a href="wells/27369.html">27369</a></td><td>Tillman Terrace</td><td>Tillman</td><td>Actively Monitored</td><td>18</td><td>03/02/2012</td><td>01/24/2025</td></tr>
       <tr><td><a href="wells/27411.html">27411</a></td><td>North Fork Red River</td><td>Tillman</td><td>Inactive</td><td>1</td><td>07/07/2014</td><td>07/07/2014</td></tr>
       <tr><td><a href="wells/27472.html">27472</a></td><td>Tillman Terrace</td><td>Tillman</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
@@ -1326,7 +1330,7 @@
       <tr><td><a href="wells/27647.html">27647</a></td><td>Cimarron River</td><td>Kingfisher</td><td>Actively Monitored</td><td>34</td><td>01/24/1992</td><td>01/27/2025</td></tr>
       <tr><td><a href="wells/27648.html">27648</a></td><td>Rush Springs</td><td>Washita</td><td>Actively Monitored</td><td>48</td><td>01/15/1991</td><td>01/28/2025</td></tr>
       <tr><td><a href="wells/27649.html">27649</a></td><td>Rush Springs</td><td>Washita</td><td>Actively Monitored</td><td>36</td><td>01/15/1991</td><td>01/28/2025</td></tr>
-      <tr><td><a href="wells/27650.html">27650</a></td><td>Rush Springs</td><td>Washita</td><td>Actively Monitored - Continuous Recorder</td><td>42</td><td>01/15/1991</td><td>09/10/2020</td></tr>
+      <tr><td><a href="wells/27650.html">27650</a></td><td>Rush Springs</td><td>Washita</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>42</td><td>01/15/1991</td><td>09/10/2020</td></tr>
       <tr><td><a href="wells/27651.html">27651</a></td><td>Unknown</td><td>Washita</td><td>Inactive</td><td>5</td><td>01/15/1991</td><td>03/21/1995</td></tr>
       <tr><td><a href="wells/27652.html">27652</a></td><td>Unknown</td><td>Washita</td><td>Inactive</td><td>9</td><td>01/16/1991</td><td>02/05/1999</td></tr>
       <tr><td><a href="wells/27653.html">27653</a></td><td>Rush Springs</td><td>Caddo</td><td>Actively Monitored</td><td>51</td><td>03/14/1990</td><td>01/21/2025</td></tr>
@@ -1467,7 +1471,7 @@
       <tr><td><a href="wells/3257.html">3257</a></td><td>Ogallala NW</td><td>Ellis</td><td>Actively Monitored</td><td>59</td><td>03/25/1980</td><td>01/28/2025</td></tr>
       <tr><td><a href="wells/32611.html">32611</a></td><td>Boone</td><td>Mayes</td><td>Actively Monitored</td><td>9</td><td>11/07/2017</td><td>01/15/2025</td></tr>
       <tr><td><a href="wells/3266.html">3266</a></td><td>Ogallala NW</td><td>Ellis</td><td>Inactive</td><td>25</td><td>03/25/1980</td><td>08/07/2013</td></tr>
-      <tr><td><a href="wells/3270.html">3270</a></td><td>Ogallala NW</td><td>Ellis</td><td>Actively Monitored - Continuous Recorder</td><td>44</td><td>03/25/1980</td><td>01/24/2023</td></tr>
+      <tr><td><a href="wells/3270.html">3270</a></td><td>Ogallala NW</td><td>Ellis</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>44</td><td>03/25/1980</td><td>01/24/2023</td></tr>
       <tr><td><a href="wells/3275.html">3275</a></td><td>Ogallala NW</td><td>Ellis</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/32929.html">32929</a></td><td>Arkansas River</td><td>Tulsa</td><td>Actively Monitored</td><td>29</td><td>03/14/1997</td><td>01/13/2025</td></tr>
       <tr><td><a href="wells/32953.html">32953</a></td><td>Elk City</td><td>Washita</td><td>Actively Monitored</td><td>13</td><td>07/29/2013</td><td>01/27/2025</td></tr>
@@ -1486,7 +1490,7 @@
       <tr><td><a href="wells/33351.html">33351</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Actively Monitored</td><td>18</td><td>01/17/2008</td><td>01/07/2025</td></tr>
       <tr><td><a href="wells/3339.html">3339</a></td><td>Unknown</td><td>Ellis</td><td>Inactive</td><td>10</td><td>03/26/1980</td><td>01/10/1990</td></tr>
       <tr><td><a href="wells/3346.html">3346</a></td><td>Unknown</td><td>Ellis</td><td>Inactive</td><td>24</td><td>03/26/1980</td><td>02/20/2003</td></tr>
-      <tr><td><a href="wells/33464.html">33464</a></td><td>Blaine</td><td>Harmon</td><td>Actively Monitored - Continuous Recorder</td><td>30</td><td>01/23/1997</td><td>03/02/2021</td></tr>
+      <tr><td><a href="wells/33464.html">33464</a></td><td>Blaine</td><td>Harmon</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>30</td><td>01/23/1997</td><td>03/02/2021</td></tr>
       <tr><td><a href="wells/33477.html">33477</a></td><td>Unknown</td><td>Grady</td><td>Inactive</td><td>1</td><td>03/26/2004</td><td>03/26/2004</td></tr>
       <tr><td><a href="wells/3348.html">3348</a></td><td>Ogallala NW</td><td>Ellis</td><td>Actively Monitored</td><td>51</td><td>03/26/1980</td><td>01/14/2025</td></tr>
       <tr><td><a href="wells/33509.html">33509</a></td><td>Blaine</td><td>Harmon</td><td>Inactive</td><td>7</td><td>03/03/2015</td><td>01/14/2020</td></tr>
@@ -1522,7 +1526,7 @@
       <tr><td><a href="wells/3471.html">3471</a></td><td>Rush Springs</td><td>Caddo</td><td>Actively Monitored</td><td>26</td><td>02/09/2000</td><td>01/21/2025</td></tr>
       <tr><td><a href="wells/34859.html">34859</a></td><td>Minor-Bedrock</td><td>Haskell</td><td>Inactive</td><td>15</td><td>03/06/1998</td><td>02/04/2013</td></tr>
       <tr><td><a href="wells/34870.html">34870</a></td><td>Unknown</td><td>Beaver</td><td>Inactive</td><td>1</td><td>01/14/2003</td><td>01/14/2003</td></tr>
-      <tr><td><a href="wells/349.html">349</a></td><td>Ogallala Panhandle</td><td>Beaver</td><td>Actively Monitored - Continuous Recorder</td><td>41</td><td>01/24/1991</td><td>09/28/2022</td></tr>
+      <tr><td><a href="wells/349.html">349</a></td><td>Ogallala Panhandle</td><td>Beaver</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>41</td><td>01/24/1991</td><td>09/28/2022</td></tr>
       <tr><td><a href="wells/3499.html">3499</a></td><td>Rush Springs</td><td>Caddo</td><td>Actively Monitored</td><td>27</td><td>02/09/2000</td><td>01/21/2025</td></tr>
       <tr><td><a href="wells/35027.html">35027</a></td><td>Rush Springs</td><td>Custer</td><td>Inactive</td><td>1</td><td>07/24/2013</td><td>07/24/2013</td></tr>
       <tr><td><a href="wells/3521.html">3521</a></td><td>Washita River</td><td>Caddo</td><td>Inactive</td><td>2</td><td>05/07/2014</td><td>08/05/2014</td></tr>
@@ -1604,7 +1608,7 @@
       <tr><td><a href="wells/410.html">410</a></td><td>Unknown</td><td>Beaver</td><td>Inactive</td><td>12</td><td>01/23/1991</td><td>01/13/2003</td></tr>
       <tr><td><a href="wells/4101.html">4101</a></td><td>Rush Springs</td><td>Caddo</td><td>Actively Monitored</td><td>14</td><td>08/09/2013</td><td>01/28/2025</td></tr>
       <tr><td><a href="wells/41452.html">41452</a></td><td>Ada-Vamoosa</td><td>Osage</td><td>Inactive</td><td>14</td><td>09/22/2014</td><td>02/06/2019</td></tr>
-      <tr><td><a href="wells/41483.html">41483</a></td><td>Roubidoux</td><td>Ottawa</td><td>Actively Monitored - Continuous Recorder</td><td>12</td><td>05/24/2017</td><td>01/12/2021</td></tr>
+      <tr><td><a href="wells/41483.html">41483</a></td><td>Roubidoux</td><td>Ottawa</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>12</td><td>05/24/2017</td><td>01/12/2021</td></tr>
       <tr><td><a href="wells/41491.html">41491</a></td><td>Ada-Vamoosa</td><td>Payne</td><td>Inactive</td><td>2</td><td>07/29/2014</td><td>09/15/2014</td></tr>
       <tr><td><a href="wells/4166.html">4166</a></td><td>Rush Springs</td><td>Caddo</td><td>Inactive</td><td>2</td><td>06/17/2013</td><td>09/23/2013</td></tr>
       <tr><td><a href="wells/41670.html">41670</a></td><td>Salt Fork Red River</td><td>Greer</td><td>Inactive</td><td>5</td><td>05/05/2014</td><td>01/19/2017</td></tr>
@@ -1621,7 +1625,7 @@
       <tr><td><a href="wells/4256.html">4256</a></td><td>Ogallala Panhandle</td><td>Beaver</td><td>Actively Monitored</td><td>19</td><td>05/23/2016</td><td>01/06/2025</td></tr>
       <tr><td><a href="wells/42612.html">42612</a></td><td>Ogallala NW</td><td>Roger Mills</td><td>Inactive</td><td>2</td><td>06/07/2013</td><td>08/20/2013</td></tr>
       <tr><td><a href="wells/42789.html">42789</a></td><td>Unknown</td><td>Ellis</td><td>Inactive</td><td>1</td><td>06/18/2013</td><td>06/18/2013</td></tr>
-      <tr><td><a href="wells/42791.html">42791</a></td><td>Ogallala NW</td><td>Ellis</td><td>Actively Monitored - Continuous Recorder</td><td>15</td><td>07/09/2013</td><td>01/25/2023</td></tr>
+      <tr><td><a href="wells/42791.html">42791</a></td><td>Ogallala NW</td><td>Ellis</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>15</td><td>07/09/2013</td><td>01/25/2023</td></tr>
       <tr><td><a href="wells/428.html">428</a></td><td>Ogallala Panhandle</td><td>Beaver</td><td>Actively Monitored</td><td>36</td><td>01/24/1991</td><td>01/06/2025</td></tr>
       <tr><td><a href="wells/42809.html">42809</a></td><td>Washita River</td><td>Roger Mills</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/42864.html">42864</a></td><td>Ogallala NW</td><td>Woodward</td><td>Actively Monitored</td><td>14</td><td>07/10/2013</td><td>01/29/2025</td></tr>
@@ -1745,7 +1749,7 @@
       <tr><td><a href="wells/5707.html">5707</a></td><td>Unknown</td><td>Woodward</td><td>Inactive</td><td>1</td><td>06/26/1992</td><td>06/26/1992</td></tr>
       <tr><td><a href="wells/572.html">572</a></td><td>Ogallala Panhandle</td><td>Beaver</td><td>Actively Monitored</td><td>59</td><td>02/08/1968</td><td>01/09/2025</td></tr>
       <tr><td><a href="wells/57632.html">57632</a></td><td>North Fork Red River</td><td>Beckham</td><td>Inactive</td><td>2</td><td>05/02/2014</td><td>07/30/2014</td></tr>
-      <tr><td><a href="wells/58046.html">58046</a></td><td>Ogallala Panhandle</td><td>Beaver</td><td>Actively Monitored - Continuous Recorder</td><td>17</td><td>05/23/2016</td><td>01/16/2023</td></tr>
+      <tr><td><a href="wells/58046.html">58046</a></td><td>Ogallala Panhandle</td><td>Beaver</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>17</td><td>05/23/2016</td><td>01/16/2023</td></tr>
       <tr><td><a href="wells/58052.html">58052</a></td><td>Dakota-Dockum</td><td>Texas</td><td>Actively Monitored</td><td>12</td><td>06/08/2016</td><td>01/07/2025</td></tr>
       <tr><td><a href="wells/59076.html">59076</a></td><td>Unknown</td><td>Texas</td><td>Inactive</td><td>1</td><td>01/20/2010</td><td>01/20/2010</td></tr>
       <tr><td><a href="wells/59176.html">59176</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Inactive</td><td>2</td><td>03/09/2016</td><td>08/16/2016</td></tr>
@@ -1786,7 +1790,7 @@
       <tr><td><a href="wells/715.html">715</a></td><td>Ogallala Panhandle</td><td>Beaver</td><td>Actively Monitored</td><td>28</td><td>01/13/1998</td><td>01/06/2025</td></tr>
       <tr><td><a href="wells/71691.html">71691</a></td><td>Arkansas River</td><td>Osage</td><td>Inactive</td><td>5</td><td>01/22/2015</td><td>05/03/2016</td></tr>
       <tr><td><a href="wells/71909.html">71909</a></td><td>Rush Springs</td><td>Caddo</td><td>Inactive</td><td>2</td><td>07/24/2013</td><td>09/25/2013</td></tr>
-      <tr><td><a href="wells/72072.html">72072</a></td><td>Blaine</td><td>Harmon</td><td>Actively Monitored - Continuous Recorder</td><td>19</td><td>01/13/2015</td><td>02/05/2024</td></tr>
+      <tr><td><a href="wells/72072.html">72072</a></td><td>Blaine</td><td>Harmon</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>19</td><td>01/13/2015</td><td>02/05/2024</td></tr>
       <tr><td><a href="wells/72122.html">72122</a></td><td>Elk City</td><td>Washita</td><td>Actively Monitored</td><td>15</td><td>01/27/2010</td><td>01/26/2023</td></tr>
       <tr><td><a href="wells/72239.html">72239</a></td><td>Roubidoux</td><td>Delaware</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/72304.html">72304</a></td><td>Elk City</td><td>Washita</td><td>Never Monitored</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
@@ -1867,7 +1871,7 @@
       <tr><td><a href="wells/85152.html">85152</a></td><td>Arbuckle-Simpson</td><td>Johnston</td><td>Inactive</td><td>10</td><td>03/23/2010</td><td>05/03/2016</td></tr>
       <tr><td><a href="wells/85190.html">85190</a></td><td>Arbuckle-Simpson</td><td>Pontotoc</td><td>Actively Monitored</td><td>14</td><td>03/22/2011</td><td>02/06/2023</td></tr>
       <tr><td><a href="wells/85191.html">85191</a></td><td>Arbuckle-Simpson</td><td>Pontotoc</td><td>Actively Monitored</td><td>28</td><td>03/25/2010</td><td>01/07/2025</td></tr>
-      <tr><td><a href="wells/85192.html">85192</a></td><td>Arbuckle-Simpson</td><td>Ellis</td><td>Actively Monitored - Continuous Recorder</td><td>18</td><td>01/30/2014</td><td>03/03/2021</td></tr>
+      <tr><td><a href="wells/85192.html">85192</a></td><td>Arbuckle-Simpson</td><td>Ellis</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>18</td><td>01/30/2014</td><td>03/03/2021</td></tr>
       <tr><td><a href="wells/85200.html">85200</a></td><td>Minor-Bedrock</td><td>Marshall</td><td>Actively Monitored</td><td>22</td><td>03/16/2004</td><td>01/21/2025</td></tr>
       <tr><td><a href="wells/85337.html">85337</a></td><td>Unknown</td><td>Caddo</td><td>Inactive</td><td>2</td><td>03/26/2013</td><td>04/16/2013</td></tr>
       <tr><td><a href="wells/85378.html">85378</a></td><td>Boone</td><td>Adair</td><td>Actively Monitored</td><td>16</td><td>05/23/2017</td><td>01/15/2025</td></tr>
@@ -1876,7 +1880,7 @@
       <tr><td><a href="wells/85916.html">85916</a></td><td>Ogallala NW</td><td>Woodward</td><td>Inactive</td><td>1</td><td>08/13/2013</td><td>08/13/2013</td></tr>
       <tr><td><a href="wells/85982.html">85982</a></td><td>Rush Springs</td><td>Custer</td><td>Actively Monitored</td><td>26</td><td>07/31/2013</td><td>02/04/2025</td></tr>
       <tr><td><a href="wells/86266.html">86266</a></td><td>Arbuckle-Simpson</td><td>Murray</td><td>Actively Monitored</td><td>24</td><td>03/26/2012</td><td>01/07/2025</td></tr>
-      <tr><td><a href="wells/86267.html">86267</a></td><td>Arbuckle-Simpson</td><td>Johnston</td><td>Actively Monitored - Continuous Recorder</td><td>19</td><td>03/23/2010</td><td>03/03/2021</td></tr>
+      <tr><td><a href="wells/86267.html">86267</a></td><td>Arbuckle-Simpson</td><td>Johnston</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>19</td><td>03/23/2010</td><td>03/03/2021</td></tr>
       <tr><td><a href="wells/86398.html">86398</a></td><td>Ogallala Panhandle</td><td>Cimarron</td><td>Actively Monitored</td><td>18</td><td>01/22/2009</td><td>01/07/2025</td></tr>
       <tr><td><a href="wells/86463.html">86463</a></td><td>Garber-Wellington</td><td>Payne</td><td>Inactive</td><td>2</td><td>10/29/2013</td><td>06/24/2019</td></tr>
       <tr><td><a href="wells/868.html">868</a></td><td>Unknown</td><td>Texas</td><td>Inactive</td><td>17</td><td>05/06/1980</td><td>01/07/1997</td></tr>
@@ -1904,8 +1908,8 @@
       <tr><td><a href="wells/88865.html">88865</a></td><td>Tillman Terrace</td><td>Tillman</td><td>Actively Monitored</td><td>13</td><td>05/27/2014</td><td>01/24/2025</td></tr>
       <tr><td><a href="wells/88873.html">88873</a></td><td>Tillman Terrace</td><td>Tillman</td><td>Actively Monitored</td><td>15</td><td>03/02/2012</td><td>01/24/2025</td></tr>
       <tr><td><a href="wells/89166.html">89166</a></td><td>North Fork Red River</td><td>Greer</td><td>Inactive</td><td>1</td><td>06/25/2014</td><td>06/25/2014</td></tr>
-      <tr><td><a href="wells/89283.html">89283</a></td><td>Rush Springs</td><td>Grady</td><td>Actively Monitored - Continuous Recorder</td><td>1</td><td>09/08/2016</td><td>09/08/2016</td></tr>
-      <tr><td><a href="wells/89284.html">89284</a></td><td>Minor-Bedrock</td><td>Canadian</td><td>Actively Monitored - Continuous Recorder</td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
+      <tr><td><a href="wells/89283.html">89283</a></td><td>Rush Springs</td><td>Grady</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>1</td><td>09/08/2016</td><td>09/08/2016</td></tr>
+      <tr><td><a href="wells/89284.html">89284</a></td><td>Minor-Bedrock</td><td>Canadian</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>No Data</td><td>No Data</td><td>No Data</td></tr>
       <tr><td><a href="wells/89348.html">89348</a></td><td>Ogallala NW</td><td>Ellis</td><td>Inactive</td><td>1</td><td>03/10/2021</td><td>03/10/2021</td></tr>
       <tr><td><a href="wells/89382.html">89382</a></td><td>Unknown</td><td>Oklahoma</td><td>Inactive</td><td>1</td><td>09/24/2013</td><td>09/24/2013</td></tr>
       <tr><td><a href="wells/89392.html">89392</a></td><td>Rush Springs</td><td>Custer</td><td>Actively Monitored</td><td>14</td><td>09/24/2013</td><td>01/14/2025</td></tr>
@@ -1963,7 +1967,7 @@
       <tr><td><a href="wells/90488.html">90488</a></td><td>Ogallala NW</td><td>Roger Mills</td><td>Actively Monitored</td><td>28</td><td>06/25/2013</td><td>01/27/2025</td></tr>
       <tr><td><a href="wells/9049.html">9049</a></td><td>Unknown</td><td>Beaver</td><td>Inactive</td><td>24</td><td>01/15/1980</td><td>01/13/2003</td></tr>
       <tr><td><a href="wells/9050.html">9050</a></td><td>Unknown</td><td>Beaver</td><td>Inactive</td><td>15</td><td>05/20/1980</td><td>01/12/1998</td></tr>
-      <tr><td><a href="wells/9051.html">9051</a></td><td>Unknown</td><td>Beaver</td><td>Actively Monitored - Continuous Recorder</td><td>24</td><td>05/13/1980</td><td>03/29/2021</td></tr>
+      <tr><td><a href="wells/9051.html">9051</a></td><td>Unknown</td><td>Beaver</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>24</td><td>05/13/1980</td><td>03/29/2021</td></tr>
       <tr><td><a href="wells/9052.html">9052</a></td><td>Unknown</td><td>Beaver</td><td>Inactive</td><td>36</td><td>02/08/1968</td><td>01/15/2003</td></tr>
       <tr><td><a href="wells/9053.html">9053</a></td><td>Unknown</td><td>Beaver</td><td>Inactive</td><td>23</td><td>01/27/1967</td><td>01/09/1995</td></tr>
       <tr><td><a href="wells/9054.html">9054</a></td><td>Unknown</td><td>Beaver</td><td>Inactive</td><td>36</td><td>02/20/1968</td><td>03/15/2021</td></tr>
@@ -2162,7 +2166,7 @@
       <tr><td><a href="wells/9240.html">9240</a></td><td>Rush Springs</td><td>Custer</td><td>Actively Monitored</td><td>33</td><td>11/14/1990</td><td>01/28/2025</td></tr>
       <tr><td><a href="wells/9241.html">9241</a></td><td>Unknown</td><td>Custer</td><td>Inactive</td><td>5</td><td>01/16/1991</td><td>03/21/1995</td></tr>
       <tr><td><a href="wells/9242.html">9242</a></td><td>Ogallala Panhandle</td><td>Cimarron</td><td>Actively Monitored</td><td>60</td><td>01/24/1967</td><td>01/07/2025</td></tr>
-      <tr><td><a href="wells/9243.html">9243</a></td><td>Rush Springs</td><td>Custer</td><td>Actively Monitored - Continuous Recorder</td><td>42</td><td>01/16/1991</td><td>01/28/2025</td></tr>
+      <tr><td><a href="wells/9243.html">9243</a></td><td>Rush Springs</td><td>Custer</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>42</td><td>01/16/1991</td><td>01/28/2025</td></tr>
       <tr><td><a href="wells/9244.html">9244</a></td><td>Rush Springs</td><td>Custer</td><td>Actively Monitored</td><td>49</td><td>01/15/1991</td><td>01/28/2025</td></tr>
       <tr><td><a href="wells/9245.html">9245</a></td><td>Unknown</td><td>Cimarron</td><td>Inactive</td><td>35</td><td>01/17/1967</td><td>01/14/2003</td></tr>
       <tr><td><a href="wells/9246.html">9246</a></td><td>Rush Springs</td><td>Custer</td><td>Inactive</td><td>24</td><td>01/15/1991</td><td>10/01/2013</td></tr>
@@ -2196,8 +2200,8 @@
       <tr><td><a href="wells/9269.html">9269</a></td><td>Unknown</td><td>Cleveland</td><td>Inactive</td><td>8</td><td>03/20/1984</td><td>03/19/1991</td></tr>
       <tr><td><a href="wells/92692.html">92692</a></td><td>Ogallala Panhandle</td><td>Cimarron</td><td>Actively Monitored</td><td>17</td><td>01/17/2008</td><td>01/07/2025</td></tr>
       <tr><td><a href="wells/92697.html">92697</a></td><td>Cimarron River</td><td>Woods</td><td>Inactive</td><td>2</td><td>06/27/2016</td><td>07/26/2016</td></tr>
-      <tr><td><a href="wells/92698.html">92698</a></td><td>Cimarron River</td><td>Woods</td><td>Actively Monitored - Continuous Recorder</td><td>23</td><td>01/06/2009</td><td>01/10/2023</td></tr>
-      <tr><td><a href="wells/927.html">927</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Actively Monitored - Continuous Recorder</td><td>29</td><td>01/12/1995</td><td>01/26/2022</td></tr>
+      <tr><td><a href="wells/92698.html">92698</a></td><td>Cimarron River</td><td>Woods</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>23</td><td>01/06/2009</td><td>01/10/2023</td></tr>
+      <tr><td><a href="wells/927.html">927</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>29</td><td>01/12/1995</td><td>01/26/2022</td></tr>
       <tr><td><a href="wells/9270.html">9270</a></td><td>Unknown</td><td>Cleveland</td><td>Inactive</td><td>24</td><td>02/26/1980</td><td>01/15/2005</td></tr>
       <tr><td><a href="wells/9271.html">9271</a></td><td>Garber-Wellington</td><td>Cleveland</td><td>Actively Monitored</td><td>45</td><td>03/30/1979</td><td>01/28/2025</td></tr>
       <tr><td><a href="wells/9272.html">9272</a></td><td>Unknown</td><td>Coal</td><td>Inactive</td><td>18</td><td>03/06/1981</td><td>02/26/1998</td></tr>
@@ -2436,7 +2440,7 @@
       <tr><td><a href="wells/9492.html">9492</a></td><td>Unknown</td><td>Hughes</td><td>Inactive</td><td>2</td><td>01/24/1985</td><td>01/28/1986</td></tr>
       <tr><td><a href="wells/9493.html">9493</a></td><td>Unknown</td><td>Hughes</td><td>Inactive</td><td>8</td><td>01/24/1985</td><td>01/24/1994</td></tr>
       <tr><td><a href="wells/9494.html">9494</a></td><td>Unknown</td><td>Jackson</td><td>Inactive</td><td>23</td><td>03/09/1978</td><td>02/11/2000</td></tr>
-      <tr><td><a href="wells/94941.html">94941</a></td><td>Garber-Wellington</td><td>Cleveland</td><td>Actively Monitored - Continuous Recorder</td><td>15</td><td>03/15/2015</td><td>03/03/2021</td></tr>
+      <tr><td><a href="wells/94941.html">94941</a></td><td>Garber-Wellington</td><td>Cleveland</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>15</td><td>03/15/2015</td><td>03/03/2021</td></tr>
       <tr><td><a href="wells/9495.html">9495</a></td><td>Unknown</td><td>Jackson</td><td>Inactive</td><td>21</td><td>01/15/1974</td><td>01/30/1998</td></tr>
       <tr><td><a href="wells/9496.html">9496</a></td><td>Blaine</td><td>Jackson</td><td>Actively Monitored</td><td>49</td><td>01/15/1974</td><td>01/23/2025</td></tr>
       <tr><td><a href="wells/9497.html">9497</a></td><td>Blaine</td><td>Jackson</td><td>Actively Monitored</td><td>58</td><td>01/27/1970</td><td>09/27/2022</td></tr>
@@ -2516,7 +2520,7 @@
       <tr><td><a href="wells/9562.html">9562</a></td><td>Unknown</td><td>Logan</td><td>Inactive</td><td>33</td><td>01/20/1975</td><td>01/11/2006</td></tr>
       <tr><td><a href="wells/9563.html">9563</a></td><td>Unknown</td><td>Logan</td><td>Inactive</td><td>11</td><td>01/20/1975</td><td>03/04/1987</td></tr>
       <tr><td><a href="wells/9564.html">9564</a></td><td>Unknown</td><td>Logan</td><td>Inactive</td><td>29</td><td>01/20/1975</td><td>02/24/2004</td></tr>
-      <tr><td><a href="wells/9565.html">9565</a></td><td>Cimarron River</td><td>Logan</td><td>Actively Monitored - Continuous Recorder</td><td>56</td><td>01/20/1975</td><td>01/27/2021</td></tr>
+      <tr><td><a href="wells/9565.html">9565</a></td><td>Cimarron River</td><td>Logan</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>56</td><td>01/20/1975</td><td>01/27/2021</td></tr>
       <tr><td><a href="wells/9566.html">9566</a></td><td>Unknown</td><td>Logan</td><td>Inactive</td><td>15</td><td>01/20/1975</td><td>01/04/1989</td></tr>
       <tr><td><a href="wells/9567.html">9567</a></td><td>Unknown</td><td>Logan</td><td>Inactive</td><td>18</td><td>01/20/1975</td><td>01/23/1992</td></tr>
       <tr><td><a href="wells/9568.html">9568</a></td><td>Unknown</td><td>Logan</td><td>Inactive</td><td>14</td><td>02/28/1984</td><td>03/03/1997</td></tr>
@@ -2558,7 +2562,7 @@
       <tr><td><a href="wells/9604.html">9604</a></td><td>Unknown</td><td>Okfuskee</td><td>Inactive</td><td>6</td><td>03/01/1985</td><td>01/24/1991</td></tr>
       <tr><td><a href="wells/9605.html">9605</a></td><td>North Canadian River</td><td>Okfuskee</td><td>Inactive</td><td>28</td><td>03/01/1985</td><td>01/23/2015</td></tr>
       <tr><td><a href="wells/9606.html">9606</a></td><td>Unknown</td><td>Okfuskee</td><td>Inactive</td><td>3</td><td>03/01/1985</td><td>03/31/1988</td></tr>
-      <tr><td><a href="wells/9607.html">9607</a></td><td>North Canadian River</td><td>Okfuskee</td><td>Actively Monitored - Continuous Recorder</td><td>46</td><td>03/01/1985</td><td>02/26/2021</td></tr>
+      <tr><td><a href="wells/9607.html">9607</a></td><td>North Canadian River</td><td>Okfuskee</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>46</td><td>03/01/1985</td><td>02/26/2021</td></tr>
       <tr><td><a href="wells/9608.html">9608</a></td><td>Garber-Wellington</td><td>Oklahoma</td><td>Inactive</td><td>35</td><td>09/10/1975</td><td>01/17/2013</td></tr>
       <tr><td><a href="wells/9609.html">9609</a></td><td>Unknown</td><td>Oklahoma</td><td>Inactive</td><td>16</td><td>03/25/1985</td><td>03/27/2000</td></tr>
       <tr><td><a href="wells/9610.html">9610</a></td><td>Unknown</td><td>Oklahoma</td><td>Inactive</td><td>6</td><td>03/25/1985</td><td>03/15/1990</td></tr>
@@ -2607,7 +2611,7 @@
       <tr><td><a href="wells/9650.html">9650</a></td><td>Unknown</td><td>Roger Mills</td><td>Inactive</td><td>26</td><td>03/26/1980</td><td>01/24/2006</td></tr>
       <tr><td><a href="wells/9651.html">9651</a></td><td>Unknown</td><td>Roger Mills</td><td>Inactive</td><td>10</td><td>03/27/1980</td><td>01/18/1989</td></tr>
       <tr><td><a href="wells/9653.html">9653</a></td><td>Ogallala NW</td><td>Roger Mills</td><td>Actively Monitored</td><td>43</td><td>03/27/1981</td><td>01/28/2025</td></tr>
-      <tr><td><a href="wells/9656.html">9656</a></td><td>Ogallala NW</td><td>Roger Mills</td><td>Actively Monitored - Continuous Recorder</td><td>43</td><td>03/26/1981</td><td>01/26/2023</td></tr>
+      <tr><td><a href="wells/9656.html">9656</a></td><td>Ogallala NW</td><td>Roger Mills</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>43</td><td>03/26/1981</td><td>01/26/2023</td></tr>
       <tr><td><a href="wells/9657.html">9657</a></td><td>Ogallala NW</td><td>Roger Mills</td><td>Actively Monitored</td><td>51</td><td>03/27/1980</td><td>01/28/2025</td></tr>
       <tr><td><a href="wells/9658.html">9658</a></td><td>Ogallala NW</td><td>Roger Mills</td><td>Inactive</td><td>36</td><td>02/10/1976</td><td>03/04/2013</td></tr>
       <tr><td><a href="wells/96581.html">96581</a></td><td>North Canadian River</td><td>Woodward</td><td>Actively Monitored</td><td>12</td><td>06/09/2015</td><td>01/29/2025</td></tr>
@@ -2618,7 +2622,7 @@
       <tr><td><a href="wells/9663.html">9663</a></td><td>Unknown</td><td>Roger Mills</td><td>Inactive</td><td>11</td><td>03/27/1980</td><td>01/02/1992</td></tr>
       <tr><td><a href="wells/9664.html">9664</a></td><td>Ogallala NW</td><td>Roger Mills</td><td>Actively Monitored</td><td>54</td><td>03/27/1980</td><td>01/25/2023</td></tr>
       <tr><td><a href="wells/9665.html">9665</a></td><td>Unknown</td><td>Roger Mills</td><td>Inactive</td><td>11</td><td>03/26/1980</td><td>01/11/1991</td></tr>
-      <tr><td><a href="wells/9666.html">9666</a></td><td>Canadian River</td><td>Roger Mills</td><td>Actively Monitored - Continuous Recorder</td><td>50</td><td>03/26/1980</td><td>02/23/2021</td></tr>
+      <tr><td><a href="wells/9666.html">9666</a></td><td>Canadian River</td><td>Roger Mills</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>50</td><td>03/26/1980</td><td>02/23/2021</td></tr>
       <tr><td><a href="wells/9667.html">9667</a></td><td>Ogallala NW</td><td>Roger Mills</td><td>Inactive</td><td>27</td><td>03/26/1981</td><td>01/17/2012</td></tr>
       <tr><td><a href="wells/9668.html">9668</a></td><td>Unknown</td><td>Rogers</td><td>Inactive</td><td>17</td><td>03/14/1979</td><td>02/14/1995</td></tr>
       <tr><td><a href="wells/9669.html">9669</a></td><td>Unknown</td><td>Rogers</td><td>Inactive</td><td>31</td><td>03/15/1979</td><td>03/19/2009</td></tr>
@@ -2675,7 +2679,7 @@
       <tr><td><a href="wells/9734.html">9734</a></td><td>Unknown</td><td>Texas</td><td>Inactive</td><td>32</td><td>02/28/1966</td><td>01/07/1999</td></tr>
       <tr><td><a href="wells/9736.html">9736</a></td><td>Ogallala Panhandle</td><td>Texas</td><td>Actively Monitored</td><td>61</td><td>03/02/1966</td><td>01/08/2025</td></tr>
       <tr><td><a href="wells/9744.html">9744</a></td><td>Unknown</td><td>Texas</td><td>Inactive</td><td>28</td><td>03/03/1966</td><td>01/24/1996</td></tr>
-      <tr><td><a href="wells/97451.html">97451</a></td><td>Arbuckle-Simpson</td><td>Pontotoc</td><td>Actively Monitored - Continuous Recorder</td><td>21</td><td>01/30/2014</td><td>03/03/2021</td></tr>
+      <tr><td><a href="wells/97451.html">97451</a></td><td>Arbuckle-Simpson</td><td>Pontotoc</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>21</td><td>01/30/2014</td><td>03/03/2021</td></tr>
       <tr><td><a href="wells/9746.html">9746</a></td><td>Unknown</td><td>Texas</td><td>Inactive</td><td>33</td><td>03/03/1966</td><td>01/04/1999</td></tr>
       <tr><td><a href="wells/9747.html">9747</a></td><td>Unknown</td><td>Texas</td><td>Inactive</td><td>25</td><td>03/02/1966</td><td>01/10/1990</td></tr>
       <tr><td><a href="wells/9750.html">9750</a></td><td>Unknown</td><td>Texas</td><td>Inactive</td><td>36</td><td>01/18/1966</td><td>01/13/2003</td></tr>
@@ -2717,7 +2721,7 @@
       <tr><td><a href="wells/9803.html">9803</a></td><td>Unknown</td><td>Tillman</td><td>Inactive</td><td>30</td><td>02/18/1969</td><td>01/20/2005</td></tr>
       <tr><td><a href="wells/9804.html">9804</a></td><td>Unknown</td><td>Tillman</td><td>Inactive</td><td>20</td><td>02/02/1983</td><td>01/31/2003</td></tr>
       <tr><td><a href="wells/9805.html">9805</a></td><td>Unknown</td><td>Tillman</td><td>Inactive</td><td>16</td><td>01/28/1975</td><td>02/01/1995</td></tr>
-      <tr><td><a href="wells/9806.html">9806</a></td><td>Tillman Terrace</td><td>Tillman</td><td>Actively Monitored - Continuous Recorder</td><td>54</td><td>01/06/1984</td><td>01/24/2025</td></tr>
+      <tr><td><a href="wells/9806.html">9806</a></td><td>Tillman Terrace</td><td>Tillman</td><td>Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></td><td>54</td><td>01/06/1984</td><td>01/24/2025</td></tr>
       <tr><td><a href="wells/9807.html">9807</a></td><td>Unknown</td><td>Tillman</td><td>Inactive</td><td>21</td><td>03/08/1977</td><td>02/24/1997</td></tr>
       <tr><td><a href="wells/9808.html">9808</a></td><td>Unknown</td><td>Tillman</td><td>Inactive</td><td>18</td><td>03/08/1977</td><td>02/15/1994</td></tr>
       <tr><td><a href="wells/9809.html">9809</a></td><td>Unknown</td><td>Tillman</td><td>Inactive</td><td>20</td><td>01/06/1984</td><td>01/30/2003</td></tr>

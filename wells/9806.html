@@ -44,8 +44,12 @@
     .btn:hover { background-color: #e0e0e0; }
     table { border-collapse: collapse; width: 100%; margin-top: 4px; table-layout: fixed; }
     th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; width: 50%; }
-    .table-pager { margin-top: 10px; display: flex; align-items: center; gap: 12px; }
-    #pageInfo { font-size: 13px; color: #555; }
+    .table-pager { margin-top: 10px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    #pageNums { display: flex; gap: 6px; flex-wrap: wrap; }
+    .pager-num { padding: 4px 9px; }
+    .pager-num.active { background: #007BC2; color: #fff; border-color: #007BC2; }
+    .pager-gap { color: #999; padding: 0 4px; align-self: center; }
+    .coming-soon { text-align: center; margin: 16px 0; font-size: 26px; font-weight: bold; color: #B5491A; letter-spacing: 0.03em; }
     th { background-color: #007BC2; color: white; }
     tr:nth-child(even) { background-color: #f2f2f2; }
     tr.highlighted { background-color: #fff3a3 !important; }
@@ -141,7 +145,7 @@
   <div class="well-meta">
     <span><strong>Aquifer:</strong> Tillman Terrace</span>
     <span><strong>County:</strong> Tillman</span>
-    <span><strong>Monitoring Status:</strong> Actively Monitored - Continuous Recorder</span>
+    <span><strong>Monitoring Status:</strong> Actively Monitored - <span style="color:#B5491A; font-weight:bold;">Continuous Recorder</span></span>
   </div>
   <div class="main-content">
       <div class="map-band">
@@ -166,6 +170,7 @@
         <button class="btn" onclick="saveChart()">&#8681; Save Graph</button>
         <button class="btn" onclick="exportTable()">&#8681; Export Table</button>
       </div>
+      <div class="coming-soon">Continuous Data COMING SOON!</div>
       <p class="note">Data Table</p>
       <table id="dataTable">
         <thead>
@@ -230,7 +235,7 @@
       </table>
       <div class="table-pager">
         <button class="btn" onclick="tablePage(-1)">&#8592; Prev</button>
-        <span id="pageInfo"></span>
+        <span id="pageNums"></span>
         <button class="btn" onclick="tablePage(1)">Next &#8594;</button>
       </div>
   </div>
@@ -313,13 +318,35 @@
     var tableRows = Array.prototype.slice.call(document.querySelectorAll("#dataTable tbody tr"));
     var totalPages = Math.max(1, Math.ceil(tableRows.length / rowsPerPage));
     var currentPage = 1;
+    function renderPageNums() {
+      var el = document.getElementById("pageNums");
+      if (!el) return;
+      el.innerHTML = "";
+      var win = 2, want = [];
+      for (var p = 1; p <= totalPages; p++) {
+        if (p === 1 || p === totalPages || (p >= currentPage - win && p <= currentPage + win)) want.push(p);
+        else if (want[want.length - 1] !== "gap") want.push("gap");
+      }
+      want.forEach(function(p) {
+        if (p === "gap") {
+          var sp = document.createElement("span");
+          sp.textContent = String.fromCharCode(8230); sp.className = "pager-gap";
+          el.appendChild(sp);
+        } else {
+          var b = document.createElement("button");
+          b.textContent = p;
+          b.className = "btn pager-num" + (p === currentPage ? " active" : "");
+          b.onclick = (function(pg) { return function() { currentPage = pg; renderTablePage(); }; })(p);
+          el.appendChild(b);
+        }
+      });
+    }
     function renderTablePage() {
       var start = (currentPage - 1) * rowsPerPage, end = start + rowsPerPage;
       for (var i = 0; i < tableRows.length; i++) {
         tableRows[i].style.display = (i >= start && i < end) ? "" : "none";
       }
-      var info = document.getElementById("pageInfo");
-      if (info) info.textContent = "Page " + currentPage + " of " + totalPages;
+      renderPageNums();
     }
     function tablePage(d) {
       currentPage = Math.min(totalPages, Math.max(1, currentPage + d));
