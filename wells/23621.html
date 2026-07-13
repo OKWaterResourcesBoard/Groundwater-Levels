@@ -67,10 +67,10 @@
     .sidebar a:last-of-type { border-bottom: none; }
     .sidebar a:hover { color: #005a8e; text-decoration: underline; }
     .map-section { margin-top: 14px; }
-    .mini-map { height: 200px; width: 100%; border: 1px solid #ccc; border-radius: 6px; }
+    .mini-map { height: 240px; width: 100%; border: 1px solid #ccc; border-radius: 6px; }
     .leaflet-container { background: #ffffff; }
-    .map-expand-btn { margin: 0; }
     .map-band { margin: 0 0 16px 0; }
+    .map-expand-btn { margin: 0; }
     .map-band-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
     .map-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 1000; align-items: center; justify-content: center; }
     .map-modal-content { position: relative; width: 85vw; height: 82vh; background: #fff; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); overflow: hidden; }
@@ -144,6 +144,13 @@
     <span><strong>Monitoring Status:</strong> Actively Monitored</span>
   </div>
   <div class="main-content">
+      <div class="map-band">
+        <div class="map-band-head">
+          <h3 class="map-col-title">Well Location</h3>
+          <button class="btn map-expand-btn" onclick="openMapModal()">&#10530; Expand map</button>
+        </div>
+        <div id="wellMap" class="mini-map"></div>
+      </div>
       <div class="chart-container">
         <canvas id="hydrograph"></canvas>
       </div>
@@ -158,13 +165,6 @@
       <div style="margin-top:12px;">
         <button class="btn" onclick="saveChart()">&#8681; Save Graph</button>
         <button class="btn" onclick="exportTable()">&#8681; Export Table</button>
-      </div>
-      <div class="map-band">
-        <div class="map-band-head">
-          <h3 class="map-col-title">Well Location</h3>
-          <button class="btn map-expand-btn" onclick="openMapModal()">&#10530; Expand map</button>
-        </div>
-        <div id="wellMap" class="mini-map"></div>
       </div>
       <p class="note">Data Table</p>
       <table id="dataTable">
@@ -222,18 +222,23 @@
       var wellLabel = "Well 23621";
       var okGeo = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"name":"Oklahoma"},"geometry":{"type":"Polygon","coordinates":[[[-100.087706,37.000263],[-94.616242,37.000263],[-94.616242,36.501861],[-94.430026,35.395519],[-94.484796,33.637421],[-94.868182,33.74696],[-94.966767,33.861976],[-95.224183,33.960561],[-95.289906,33.87293],[-95.547322,33.878407],[-95.602092,33.933176],[-95.8376,33.834591],[-95.936185,33.889361],[-96.149786,33.840068],[-96.346956,33.686714],[-96.423633,33.774345],[-96.631756,33.845545],[-96.850834,33.845545],[-96.922034,33.960561],[-97.173974,33.736006],[-97.256128,33.861976],[-97.371143,33.823637],[-97.458774,33.905791],[-97.694283,33.982469],[-97.869545,33.851022],[-97.946222,33.987946],[-98.088623,34.004376],[-98.170777,34.113915],[-98.36247,34.157731],[-98.488439,34.064623],[-98.570593,34.146777],[-98.767763,34.135823],[-98.986841,34.223454],[-99.189488,34.2125],[-99.260688,34.404193],[-99.57835,34.415147],[-99.698843,34.382285],[-99.923398,34.573978],[-100.000075,34.563024],[-100.000075,36.501861],[-101.812942,36.501861],[-103.001438,36.501861],[-103.001438,37.000263],[-102.042974,36.994786],[-100.087706,37.000263]]]}}]};
       var okStyle = { color: "#007BC2", weight: 2.5, fill: false };
+      var ZOOM_BOOST = 0;   // extra zoom past the whole-state fit; keep 0 to show the full state
+      function fitState(m, layer, pad) {
+        m.fitBounds(layer.getBounds(), { padding: [pad, pad] });
+        m.setZoom(m.getZoom() + ZOOM_BOOST);
+      }
 
       function buildMap(id, interactive) {
         var m = L.map(id, {
           zoomControl: interactive, dragging: interactive, scrollWheelZoom: false,
           doubleClickZoom: interactive, boxZoom: interactive, touchZoom: interactive,
-          keyboard: false, attributionControl: true
+          keyboard: false, attributionControl: true, zoomSnap: 0.25
         });
         L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
           maxZoom: 19, attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
         }).addTo(m);
         var layer = L.geoJSON(okGeo, { interactive: false, style: okStyle }).addTo(m);
-        m.fitBounds(layer.getBounds(), { padding: [10, 10] });
+        fitState(m, layer, 10);
         if (hasMarker) {
           L.circleMarker([mLat, mLon], { radius: 6, color: "#B5491A", fillColor: "#B5491A", fillOpacity: 0.95, weight: 2 })
             .addTo(m).bindPopup(wellLabel);
@@ -244,7 +249,7 @@
       var mini = buildMap("wellMap", false);
       setTimeout(function() {
         mini.map.invalidateSize();
-        mini.map.fitBounds(mini.layer.getBounds(), { padding: [10, 10] });
+        fitState(mini.map, mini.layer, 10);
       }, 150);
 
       var bigMap = null, bigLayer = null;
@@ -258,7 +263,7 @@
         }
         setTimeout(function() {
           bigMap.invalidateSize();
-          bigMap.fitBounds(bigLayer.getBounds(), { padding: [30, 30] });
+          fitState(bigMap, bigLayer, 30);
         }, 100);
       };
       window.closeMapModal = function() { modal.style.display = "none"; };
