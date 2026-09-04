@@ -132,7 +132,7 @@
 </head>
 <body>
   <div class="owrb-header">
-    <img src="../Branded-Logo-OWRB.svg" alt="Oklahoma Water Resources Board">
+    <img src="https://oklahoma.gov/content/dam/ok/en/owrb/images/about-us/oklahoma-wrb-horizontal.png" alt="Oklahoma Water Resources Board">
     <div class="top-links">
       <a href="https://oklahoma.gov/owrb.html" target="_blank">OWRB Home</a>
       <a href="https://www.owrb.ok.gov/wd/search/search.php" target="_blank">Well Log Search</a>
@@ -187,8 +187,9 @@
           doubleClickZoom: interactive, boxZoom: interactive, touchZoom: interactive,
           keyboard: false, attributionControl: true, zoomSnap: 0.25
         });
-        L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-          maxZoom: 19, attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
+        L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_2vt7_1_f7678d4a8e7be8503c9ef4e2", {
+          maxZoom: 20, subdomains: "abcd",
+          attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
         }).addTo(m);
         var layer = L.geoJSON(okGeo, { interactive: false, style: okStyle }).addTo(m);
         fitState(m, layer, 10);
